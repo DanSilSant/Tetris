@@ -12,7 +12,7 @@ import java.awt.Color;
  */
 public class Empty extends Block {
     public Empty(){
-        super('.',Color.BLACK);
+        super('.',Color.WHITE);
     }
     
     /**

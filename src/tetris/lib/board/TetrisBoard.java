@@ -43,7 +43,7 @@ public final class TetrisBoard extends BlockMatrix {
     }
 
     public TetrisBoard() {
-        this(30, 20);
+        this(10, 10);
     }
 
     public TetrisBoard(Block[][] mat, Piece current) {
@@ -67,7 +67,9 @@ public final class TetrisBoard extends BlockMatrix {
                 matrix[l][c] = new Empty();
             }
         }
+        
         generateRandomPiece();
+        
     }
 
     public void generateRandomPiece() {
