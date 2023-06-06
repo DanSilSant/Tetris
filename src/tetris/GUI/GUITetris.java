@@ -149,9 +149,16 @@ public class GUITetris extends javax.swing.JFrame {
         });
 
         SpnLinha.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        SpnLinha.setModel(new javax.swing.SpinnerNumberModel(10, 6, null, 1));
         SpnLinha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        SpnLinha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                SpnLinhaPropertyChange(evt);
+            }
+        });
 
         SpnColuna.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        SpnColuna.setModel(new javax.swing.SpinnerNumberModel(10, 6, null, 1));
         SpnColuna.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         BtnMenu.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
@@ -362,6 +369,11 @@ public class GUITetris extends javax.swing.JFrame {
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         
     }//GEN-LAST:event_formKeyPressed
+
+    private void SpnLinhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_SpnLinhaPropertyChange
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_SpnLinhaPropertyChange
     
     /**
      * @param args the command line arguments

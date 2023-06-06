@@ -138,9 +138,11 @@ public class GraphicTetris extends javax.swing.JFrame {
         });
 
         SpnLinha.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        SpnLinha.setModel(new javax.swing.SpinnerNumberModel(10, 6, null, 1));
         SpnLinha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         SpnColuna.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        SpnColuna.setModel(new javax.swing.SpinnerNumberModel(10, 6, null, 1));
         SpnColuna.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         BtnMenu.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
