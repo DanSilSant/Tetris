@@ -42,6 +42,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         BtnMenu = new javax.swing.JButton();
         tetris = new tetris.lib.board.TetrisBoard();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Text Tetris");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
