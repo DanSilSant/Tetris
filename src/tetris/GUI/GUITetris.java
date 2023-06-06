@@ -372,7 +372,7 @@ public class GUITetris extends javax.swing.JFrame {
 
     private void SpnLinhaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_SpnLinhaPropertyChange
         // TODO add your handling code here:
-        
+        Jframe.
     }//GEN-LAST:event_SpnLinhaPropertyChange
     
     /**
