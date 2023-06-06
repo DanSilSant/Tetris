@@ -137,7 +137,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void BtnAbout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbout1ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_BtnAbout1ActionPerformed
 
     /**
