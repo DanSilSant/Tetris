@@ -5,9 +5,8 @@
         <group>
             <file>file:/C:/Users/hugo2/Documents/GitHub/Tetris/src/tetris/lib/board/TetrisBoard.java</file>
             <file>file:/C:/Users/hugo2/Documents/GitHub/Tetris/src/tetris/GUI/GraphicTetris.java</file>
-            <file>file:/C:/Users/hugo2/Documents/GitHub/Tetris/src/tetris/lib/blocks/BlockMatrix.java</file>
+            <file>file:/C:/Users/hugo2/Documents/GitHub/Tetris/src/tetris/lib/board/TetrisGame.java</file>
             <file>file:/C:/Users/hugo2/Documents/GitHub/Tetris/src/tetris/GUI/GUITetris.java</file>
-            <file>file:/C:/Users/hugo2/Documents/GitHub/Tetris/src/tetris/lib/blocks/Empty.java</file>
             <file>file:/C:/Users/hugo2/Documents/GitHub/Tetris/src/tetris/GUI/Menu.java</file>
         </group>
     </open-files>
