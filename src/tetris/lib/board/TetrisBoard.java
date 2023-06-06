@@ -185,34 +185,34 @@ public class TetrisBoard extends BlockMatrix {
     public void moveLeft() {
         if (canMovePiece(0, -1)) {
             current.moveLeft();
-            repaint();
+            
         }
     }
 
     public void moveRight() {
         if (canMovePiece(0, 1)) {
             current.moveRight();
-            repaint();
+            
         }
     }
 
     public void moveDown() {
         if (canMovePiece(1, 0)) {
             current.moveDown();
-            repaint();
+            
         } else {
             //caso não seja possível deslocar para baixo
             //congela a peça na matriz e gera a próxima peça
             freezePiece();
             generateRandomPiece();
-            repaint();
+            
         }
     }
 
     public void fallDown() {
         while (canMovePiece(1, 0)) {
             current.moveDown();
-            repaint();
+            
         }
         //quando a peça não se pode deslocar mais para baixo
         //congela a peça na matriz e gera a próxima peça

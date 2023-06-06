@@ -8,6 +8,7 @@ import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import tetris.lib.board.TetrisBoard;
 
+
 /**
  *
  * @author danie
@@ -254,6 +255,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         
         this.revalidate();
         this.repaint();
+        this.requestFocus();
         
         
 
@@ -265,6 +267,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetris.moveRight();
         this.revalidate();
         this.repaint();
+        this.requestFocus();
     }//GEN-LAST:event_btnRightActionPerformed
 
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
@@ -272,6 +275,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetris.moveLeft();
         this.revalidate();
         this.repaint();
+        this.requestFocus();
     }//GEN-LAST:event_btnLeftActionPerformed
 
     private void BtnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRotateActionPerformed
@@ -279,6 +283,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetris.rotate();
         this.revalidate();
         this.repaint();
+        this.requestFocus();
     }//GEN-LAST:event_BtnRotateActionPerformed
 
     private void BtnDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDownActionPerformed
@@ -286,6 +291,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetris.moveDown();
         this.revalidate();
         this.repaint();
+        this.requestFocus();
     }//GEN-LAST:event_BtnDownActionPerformed
 
     private void btnFallDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFallDownActionPerformed
@@ -293,6 +299,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetris.fallDown();
         this.revalidate();
         this.repaint();
+        this.requestFocus();
     }//GEN-LAST:event_btnFallDownActionPerformed
 
     private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
@@ -353,7 +360,33 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateGameKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-        
+             
+            if(evt.getKeyCode()==87 || evt.getKeyCode()==38 ){
+                
+                tetris.rotate();
+                this.revalidate();
+        this.repaint();
+            }
+            if(evt.getKeyCode()==68 || evt.getKeyCode()==39 ){
+                tetris.moveRight();
+                this.revalidate();
+        this.repaint();
+            }
+            if(evt.getKeyCode()==65 || evt.getKeyCode()==37 ){
+                tetris.moveLeft();
+                this.revalidate();
+        this.repaint();
+            }
+            if(evt.getKeyCode()==83 || evt.getKeyCode()==40 ){
+                tetris.moveDown();
+                this.revalidate();
+        this.repaint();
+            }
+            if(evt.getKeyCode()==32){
+                tetris.fallDown();
+                this.revalidate();
+        this.repaint();
+            }
     }//GEN-LAST:event_formKeyPressed
     
     /**
