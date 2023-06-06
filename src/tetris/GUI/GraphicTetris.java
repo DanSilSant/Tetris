@@ -4,6 +4,7 @@
  */
 package tetris.GUI;
 
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import tetris.lib.board.TetrisBoard;
 
@@ -154,11 +155,14 @@ public class GraphicTetris extends javax.swing.JFrame {
             }
         });
 
+        tetris.setBackground(new java.awt.Color(255, 255, 255));
+        tetris.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout tetrisLayout = new javax.swing.GroupLayout(tetris);
         tetris.setLayout(tetrisLayout);
         tetrisLayout.setHorizontalGroup(
             tetrisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 235, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         tetrisLayout.setVerticalGroup(
             tetrisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,9 +199,9 @@ public class GraphicTetris extends javax.swing.JFrame {
                                     .addComponent(SpnColuna))))
                         .addComponent(btnFallDown, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BtnMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 255, Short.MAX_VALUE)
-                .addComponent(tetris, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(42, 42, 42)
+                .addComponent(tetris, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,10 +220,8 @@ public class GraphicTetris extends javax.swing.JFrame {
                         .addComponent(btnCreateGame, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
                         .addComponent(BtnRotate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(tetris, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(tetris, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(btnLeft, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,7 +248,14 @@ public class GraphicTetris extends javax.swing.JFrame {
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
         //construir o jogo
+        TetrisBoard t = new TetrisBoard(lines,columns);
         tetris.resize(lines, columns);
+        
+        
+        this.revalidate();
+        this.repaint();
+        
+        
 
 
     }//GEN-LAST:event_btnCreateGameActionPerformed
@@ -254,26 +263,36 @@ public class GraphicTetris extends javax.swing.JFrame {
     private void btnRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRightActionPerformed
         // TODO add your handling code here:
         tetris.moveRight();
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_btnRightActionPerformed
 
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
         // TODO add your handling code here:
         tetris.moveLeft();
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_btnLeftActionPerformed
 
     private void BtnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRotateActionPerformed
         // TODO add your handling code here:
         tetris.rotate();
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_BtnRotateActionPerformed
 
     private void BtnDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDownActionPerformed
         // TODO add your handling code here:
         tetris.moveDown();
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_BtnDownActionPerformed
 
     private void btnFallDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFallDownActionPerformed
         // TODO add your handling code here:
         tetris.fallDown();
+        this.revalidate();
+        this.repaint();
     }//GEN-LAST:event_btnFallDownActionPerformed
 
     private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
