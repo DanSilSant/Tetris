@@ -6,7 +6,6 @@ package tetris.lib.pieces;
 
 import java.awt.Color;
 import tetris.lib.blocks.Block;
-import tetris.lib.blocks.Empty;
 
 /**
  *

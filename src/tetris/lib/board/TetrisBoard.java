@@ -22,7 +22,7 @@ import tetris.lib.pieces.PieceZ;
  *
  * @author danie
  */
-public final class TetrisBoard extends BlockMatrix {
+public class TetrisBoard extends BlockMatrix {
 
     protected Piece current;
 
