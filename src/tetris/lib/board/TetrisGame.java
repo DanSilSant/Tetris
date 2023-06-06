@@ -9,7 +9,7 @@ package tetris.lib.board;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.TimerTask;
-import javax.swing.Timer;
+import java.util.Timer;
 import tetris.lib.blocks.Empty;
 import tetris.lib.board.TetrisBoard;
 /**
@@ -21,18 +21,15 @@ public final class TetrisGame extends TetrisBoard {
  
 
     Timer timer;
-    tetris.lib.board.TetrisBoard tetris;
+    
 
  
 
     public TetrisGame() {
         super();
-         ActionListener actionListener = new ActionListener() {
-      public void actionPerformed(ActionEvent actionEvent) {
-          tetris.fallDown();
-      }
-    };
-        timer = new Timer(5,actionListener);
+         
+    
+        timer = new Timer();
         startGame(200);
     }
 
