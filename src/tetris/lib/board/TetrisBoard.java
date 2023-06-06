@@ -56,9 +56,12 @@ public final class TetrisBoard extends BlockMatrix {
     }
 
     public TetrisBoard(int lines, int cols) {
-        //contruir a matriz de blocos
+        resize(lines,cols);
+    }
+    
+    public void resize(int lines,int cols){
+     //preencher a matriz com blocos vazios
         this.matrix = new Block[lines][cols];
-        //preencher a matriz com blocos vazios
         for (int l = 0; l < lines; l++) {
             for (int c = 0; c < cols; c++) {
                 matrix[l][c] = new Empty();
