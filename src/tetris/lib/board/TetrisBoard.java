@@ -28,7 +28,7 @@ import tetris.lib.pieces.PieceZ;
  *
  * @author danie
  */
-public class TetrisBoard extends BlockMatrix implements Serializable{
+public class TetrisBoard extends BlockMatrix {
 
     protected Piece current;
 
@@ -127,18 +127,8 @@ public class TetrisBoard extends BlockMatrix implements Serializable{
         }
         return txt;
     }
-    public void save(String fileName) throws IOException {
-        try (ObjectOutputStream out = new ObjectOutputStream(
-                new FileOutputStream(fileName));) {
-            out.writeObject(this);
-        }
-    }
-public static TetrisBoard load(String fileName) throws IOException, ClassNotFoundException {
-        try ( ObjectInputStream in = new ObjectInputStream(
-                new FileInputStream(fileName))) {
-            return (TetrisBoard) in.readObject();
-        }
-    }
+    
+
 
     public boolean canMovePiece(int dy, int dx) {
         int newX = current.getColuna() + dx;

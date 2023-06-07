@@ -19,6 +19,9 @@ import java.util.Timer;
 import tetris.lib.blocks.Empty;
 import tetris.lib.board.TetrisBoard;
 import tetris.GUI.GraphicTetris;
+import tetris.lib.blocks.Block;
+import tetris.lib.blocks.BlockMatrix;
+import tetris.lib.pieces.PieceI;
 /**
  *
  * @author danie
@@ -45,7 +48,8 @@ public final class TetrisGame extends TetrisBoard implements Serializable{
         
         startGame(1000);
     }
-    public TetrisGame(GraphicTetris gt,TetrisBoard tb) {
+    public TetrisGame(GraphicTetris gt,Block[][] bm) {
+        super(bm,new PieceI());
         this.tb=new TetrisBoard(tb);
         timer = new Timer();
         this.gt=gt;
@@ -133,11 +137,25 @@ public final class TetrisGame extends TetrisBoard implements Serializable{
                 return false;
             }
         }
-        gt.text();
+        gt.text("10 pontos");
         return true;
 
  
 
+    }
+    public void save(String fileName) throws IOException {
+        System.out.println("teste");
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(fileName));) {
+            out.writeObject(this.matrix);
+        }
+    } 
+    
+     public static Block[][] load(String fileName) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(fileName))) {
+            return  (Block[][]) in.readObject();
+        }
     }
 
  

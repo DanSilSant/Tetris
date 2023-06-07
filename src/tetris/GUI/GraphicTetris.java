@@ -177,6 +177,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         );
 
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setName(""); // NOI18N
 
         jButton1.setText("Guardar Jogo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -282,7 +283,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         int columns = (Integer) SpnColuna.getValue();
         try {
             //construir o jogo
-            tetrisGame1= new TetrisGame(this,TetrisBoard.load(filename)) ;
+            tetrisGame1= new TetrisGame(this,TetrisGame.load(filename)) ;
         } catch (Exception e){
             System.out.println(e);
         
@@ -306,8 +307,8 @@ public class GraphicTetris extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
     }
     
-    public void text(){
-        jLabel1.setText("10 pontos para griffyndor!");
+    public void text(String t){
+        jLabel1.setText(t);
     }
     
     

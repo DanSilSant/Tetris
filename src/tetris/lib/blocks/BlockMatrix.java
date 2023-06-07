@@ -5,7 +5,11 @@
 package tetris.lib.blocks;
 
 import java.awt.Graphics;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import javax.swing.JPanel;
+import tetris.lib.board.TetrisBoard;
 
 /**
  *
@@ -84,6 +88,7 @@ public class BlockMatrix extends JPanel implements Drawable {
         }
         matrix = aux;
     }
+    
 
     @Override
     public String toString() {
