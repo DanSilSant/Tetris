@@ -47,6 +47,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         SpnColuna = new javax.swing.JSpinner();
         BtnMenu = new javax.swing.JButton();
         tetrisGame1 = new tetris.lib.board.TetrisGame(GraphicTetris.this);
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Text Tetris");
@@ -171,6 +172,8 @@ public class GraphicTetris extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,6 +207,10 @@ public class GraphicTetris extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addComponent(tetrisGame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(179, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(128, 128, 128))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +241,9 @@ public class GraphicTetris extends javax.swing.JFrame {
                         .addComponent(tetrisGame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(btnFallDown, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(14, 14, 14)
                 .addComponent(BtnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -253,9 +262,9 @@ public class GraphicTetris extends javax.swing.JFrame {
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
         //construir o jogo
-        tetrisGame1.resize(lines, columns);
         
-        tetrisGame1= new TetrisGame(GraphicTetris.this);
+        
+        
         
         
         
@@ -272,6 +281,9 @@ public class GraphicTetris extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
     }
     
+    public void text(){
+        jLabel1.setText("10 pontos para griffyndor!");
+    }
     
     
     private void btnRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRightActionPerformed
@@ -458,6 +470,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     private javax.swing.JButton btnFallDown;
     private javax.swing.JButton btnLeft;
     private javax.swing.JButton btnRight;
+    private javax.swing.JLabel jLabel1;
     private tetris.lib.board.TetrisGame tetrisGame1;
     // End of variables declaration//GEN-END:variables
 }

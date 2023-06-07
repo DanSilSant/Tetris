@@ -75,9 +75,10 @@ public final class TetrisGame extends TetrisBoard {
             
             
             if (isGameOver()) {
+                gt.gameOver();
                 stopGame();
                 
-                gt.gameOver();
+                
             } else if (canMovePiece(1, 0)) {
                 
                 System.out.println("dwadwadw");
@@ -115,6 +116,7 @@ public final class TetrisGame extends TetrisBoard {
                 return false;
             }
         }
+        gt.text();
         return true;
 
  
