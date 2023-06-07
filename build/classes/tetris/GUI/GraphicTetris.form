@@ -256,7 +256,7 @@
     </Component>
     <Container class="tetris.lib.board.TetrisGame" name="tetrisGame1">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new tetris.lib.board.TetrisGame()"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new tetris.lib.board.TetrisGame(GraphicTetris.this)"/>
       </AuxValues>
 
       <Layout>

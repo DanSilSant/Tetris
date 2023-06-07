@@ -22,15 +22,17 @@ public final class TetrisGame extends TetrisBoard {
  
 
     Timer timer;
+    GraphicTetris gt;
   
     
     
 
  
 
-    public TetrisGame() {
+    public TetrisGame(GraphicTetris gt) {
         super();
         timer = new Timer();
+        this.gt=gt;
        
         
         startGame(1000);
@@ -74,12 +76,15 @@ public final class TetrisGame extends TetrisBoard {
             
             if (isGameOver()) {
                 stopGame();
+                
+                gt.gameOver();
             } else if (canMovePiece(1, 0)) {
                 
                 System.out.println("dwadwadw");
                 moveDown();
-                revalidate();
-                repaint();
+                gt.revalidate();
+                gt.repaint();
+                gt.requestFocus();
                 
                 
                 
@@ -89,6 +94,8 @@ public final class TetrisGame extends TetrisBoard {
             } else {
                 freezePiece();
                 generateRandomPiece();
+                gt.revalidate();
+                gt.repaint();
                 
 
  

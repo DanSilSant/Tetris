@@ -6,8 +6,10 @@ package tetris.GUI;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
 import tetris.lib.board.TetrisBoard;
 import tetris.lib.board.TetrisGame;
+
 
 
 
@@ -44,7 +46,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         SpnLinha = new javax.swing.JSpinner();
         SpnColuna = new javax.swing.JSpinner();
         BtnMenu = new javax.swing.JButton();
-        tetrisGame1 = new tetris.lib.board.TetrisGame();
+        tetrisGame1 = new tetris.lib.board.TetrisGame(GraphicTetris.this);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Text Tetris");
@@ -250,9 +252,12 @@ public class GraphicTetris extends javax.swing.JFrame {
         // TODO add your handling code here:
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
-        //construir o jogo 
-        tetrisGame1= new TetrisGame();
-        requestFocus();
+        //construir o jogo
+        tetrisGame1.resize(lines, columns);
+        
+        tetrisGame1= new TetrisGame(GraphicTetris.this);
+        
+        
         
        
         
@@ -263,6 +268,12 @@ public class GraphicTetris extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCreateGameActionPerformed
 
+    public void gameOver(){
+        JOptionPane.showMessageDialog(null, "Jogo acabou!");
+    }
+    
+    
+    
     private void btnRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRightActionPerformed
         // TODO add your handling code here:
         tetrisGame1.moveRight();
