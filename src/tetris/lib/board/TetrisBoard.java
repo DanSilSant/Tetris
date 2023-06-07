@@ -77,6 +77,11 @@ public class TetrisBoard extends BlockMatrix {
         generateRandomPiece();
         
     }
+    
+    public void load(Block[][] mat, Piece p){
+        this.matrix=mat;
+        this.current=p;
+    }
 
     public void generateRandomPiece() {
         //gerador de numeros aleatótios

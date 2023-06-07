@@ -21,6 +21,7 @@ import tetris.lib.board.TetrisBoard;
 import tetris.GUI.GraphicTetris;
 import tetris.lib.blocks.Block;
 import tetris.lib.blocks.BlockMatrix;
+import tetris.lib.pieces.Piece;
 import tetris.lib.pieces.PieceI;
 /**
  *
@@ -48,9 +49,8 @@ public final class TetrisGame extends TetrisBoard implements Serializable{
         
         startGame(1000);
     }
-    public TetrisGame(GraphicTetris gt,Block[][] bm) {
-        super(bm,new PieceI());
-        this.tb=new TetrisBoard(tb);
+    public TetrisGame(GraphicTetris gt,Block[][] bm, Piece p) {
+        super.load(bm, p);
         timer = new Timer();
         this.gt=gt;
        
@@ -143,22 +143,34 @@ public final class TetrisGame extends TetrisBoard implements Serializable{
  
 
     }
-    public void save(String fileName) throws IOException {
+    public void save(String Matrix, String Piece) throws IOException {
         System.out.println("teste");
         try (ObjectOutputStream out = new ObjectOutputStream(
-                new FileOutputStream(fileName));) {
+                new FileOutputStream(Matrix));) {
             out.writeObject(this.matrix);
         }
+            try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(Piece));) {
+            out.writeObject(this.current);
+            }
+        
     } 
     
-     public static Block[][] load(String fileName) throws IOException, ClassNotFoundException {
+     public static Block[][] loadM(String matrix) throws IOException, ClassNotFoundException {
         try ( ObjectInputStream in = new ObjectInputStream(
-                new FileInputStream(fileName))) {
+                new FileInputStream(matrix))) {
             return  (Block[][]) in.readObject();
         }
     }
+     
+     public static Piece loadP(String piece) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(piece))) {
+            return  (Piece) in.readObject();
+        }
+    }
 
- 
+     
 
     public void deleteLine(int line) {
         //fall down all columns above line

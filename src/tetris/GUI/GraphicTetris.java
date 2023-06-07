@@ -282,12 +282,19 @@ public class GraphicTetris extends javax.swing.JFrame {
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
         try {
+            /*try {
             //construir o jogo
-            tetrisGame1= new TetrisGame(this,TetrisGame.load(filename)) ;
-        } catch (Exception e){
+            tetrisGame1= new TetrisGame(this,TetrisGame.loadM(filename),TetrisGame.loadP(filenameP)) ;
+            } catch (Exception e){
             System.out.println(e);
-        
-        } 
+            
+            } */
+            System.out.println(TetrisGame.loadM(filename).toString());
+        } catch (IOException ex) {
+            Logger.getLogger(GraphicTetris.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(GraphicTetris.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         
@@ -442,7 +449,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             // TODO add your handling code here:
-            tetrisGame1.save(filename);
+            tetrisGame1.save(filename,filenameP);
         } catch (Exception ex) {
             System.out.println(ex);        }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -492,6 +499,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     }
      
     private String filename = "teste.obj";
+    private String filenameP = "testeP.obj";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDown;
     private javax.swing.JButton BtnMenu;
