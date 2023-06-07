@@ -7,6 +7,8 @@ package tetris.GUI;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import tetris.lib.board.TetrisBoard;
+import tetris.lib.board.TetrisGame;
+
 
 
 /**
@@ -248,14 +250,10 @@ public class GraphicTetris extends javax.swing.JFrame {
         // TODO add your handling code here:
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
-        //construir o jogo
-        TetrisBoard t = new TetrisBoard(lines,columns);
-        tetris.resize(lines, columns);
-        
-        
-        this.revalidate();
-        this.repaint();
+        //construir o jogo 
         this.requestFocus();
+        tetrisGame = new TetrisGame();
+        
         
         
 
@@ -432,7 +430,9 @@ public class GraphicTetris extends javax.swing.JFrame {
             }
         });
     }
+     
     
+    private TetrisGame tetrisGame;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDown;
     private javax.swing.JButton BtnMenu;

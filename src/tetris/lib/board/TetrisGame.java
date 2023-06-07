@@ -12,6 +12,7 @@ import java.util.TimerTask;
 import java.util.Timer;
 import tetris.lib.blocks.Empty;
 import tetris.lib.board.TetrisBoard;
+import tetris.GUI.GraphicTetris;
 /**
  *
  * @author danie
@@ -21,14 +22,13 @@ public final class TetrisGame extends TetrisBoard {
  
 
     Timer timer;
+    private GraphicTetris gt;
     
 
  
 
     public TetrisGame() {
         super();
-         
-    
         timer = new Timer();
         startGame(200);
     }
@@ -72,6 +72,8 @@ public final class TetrisGame extends TetrisBoard {
                 stopGame();
             } else if (canMovePiece(1, 0)) {
                 moveDown();
+                
+                
             } else {
                 freezePiece();
                 generateRandomPiece();

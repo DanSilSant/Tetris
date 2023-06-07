@@ -199,6 +199,9 @@ public class TetrisBoard extends BlockMatrix {
     public void moveDown() {
         if (canMovePiece(1, 0)) {
             current.moveDown();
+            this.revalidate();
+            this.repaint();
+            
             
         } else {
             //caso não seja possível deslocar para baixo
