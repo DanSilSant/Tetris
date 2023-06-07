@@ -8,6 +8,12 @@ package tetris.lib.board;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.TimerTask;
 import java.util.Timer;
 import tetris.lib.blocks.Empty;
@@ -17,12 +23,14 @@ import tetris.GUI.GraphicTetris;
  *
  * @author danie
  */
-public final class TetrisGame extends TetrisBoard {
+public final class TetrisGame extends TetrisBoard implements Serializable{
 
  
 
     Timer timer;
     GraphicTetris gt;
+    TetrisBoard tb;
+    
   
     
     
@@ -31,6 +39,14 @@ public final class TetrisGame extends TetrisBoard {
 
     public TetrisGame(GraphicTetris gt) {
         super();
+        timer = new Timer();
+        this.gt=gt;
+       
+        
+        startGame(1000);
+    }
+    public TetrisGame(GraphicTetris gt,TetrisBoard tb) {
+        this.tb=new TetrisBoard(tb);
         timer = new Timer();
         this.gt=gt;
        
@@ -53,6 +69,7 @@ public final class TetrisGame extends TetrisBoard {
  
 
     }
+    
 
  
 

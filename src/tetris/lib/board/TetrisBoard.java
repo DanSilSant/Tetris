@@ -5,6 +5,12 @@
 package tetris.lib.board;
 
 import java.awt.Graphics;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Random;
 import tetris.lib.blocks.Block;
 import tetris.lib.blocks.BlockMatrix;
@@ -22,7 +28,7 @@ import tetris.lib.pieces.PieceZ;
  *
  * @author danie
  */
-public class TetrisBoard extends BlockMatrix {
+public class TetrisBoard extends BlockMatrix implements Serializable{
 
     protected Piece current;
 
@@ -120,6 +126,18 @@ public class TetrisBoard extends BlockMatrix {
             txt += "\n";
         }
         return txt;
+    }
+    public void save(String fileName) throws IOException {
+        try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(fileName));) {
+            out.writeObject(this);
+        }
+    }
+public static TetrisBoard load(String fileName) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(fileName))) {
+            return (TetrisBoard) in.readObject();
+        }
     }
 
     public boolean canMovePiece(int dy, int dx) {
