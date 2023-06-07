@@ -23,7 +23,7 @@ public final class TetrisGame extends TetrisBoard {
 
     Timer timer;
     GraphicTetris gt;
-  
+    int count=0;
     
     
 
@@ -33,9 +33,8 @@ public final class TetrisGame extends TetrisBoard {
         super();
         timer = new Timer();
         this.gt=gt;
-       
-        
         startGame(1000);
+        
     }
 
  
@@ -45,6 +44,11 @@ public final class TetrisGame extends TetrisBoard {
     }
 
  
+    public void newGame(int lines, int cols){
+        super.resize(lines,cols);
+        count=0;
+        gt.text("Pontuação: "+count);
+    }
 
     public void stopGame() {
         timer.cancel();
@@ -116,7 +120,8 @@ public final class TetrisGame extends TetrisBoard {
                 return false;
             }
         }
-        gt.text();
+        count++;
+        gt.text("Pontuação: "+count);
         return true;
 
  

@@ -43,7 +43,7 @@ public class TetrisBoard extends BlockMatrix {
     }
 
     public TetrisBoard() {
-        this(10, 10);
+        this(20, 10);
     }
 
     public TetrisBoard(Block[][] mat, Piece current) {

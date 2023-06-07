@@ -7,6 +7,7 @@ package tetris.GUI;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import tetris.lib.board.TetrisBoard;
 import tetris.lib.board.TetrisGame;
 
@@ -262,6 +263,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
         //construir o jogo
+        tetrisGame1.newGame(lines,columns);
         
         
         
@@ -279,10 +281,12 @@ public class GraphicTetris extends javax.swing.JFrame {
 
     public void gameOver(){
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
+        this.dispose();
+        new Menu().setVisible(true);
     }
     
-    public void text(){
-        jLabel1.setText("10 pontos para griffyndor!");
+    public void text(String message){
+        jLabel1.setText(message);
     }
     
     
@@ -412,6 +416,9 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.repaint();
             }
     }//GEN-LAST:event_formKeyPressed
+
+
+
     
     /**
      * @param args the command line arguments
