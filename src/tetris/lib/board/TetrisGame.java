@@ -32,6 +32,8 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     Timer timer;
     GraphicTetris gt;
     int count=0;
+    Piece piece;
+    int trocar;
     
     
 
@@ -44,15 +46,14 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         startGame(1000);
         
     }
-     public TetrisGame(GraphicTetris gt,Block[][] bm, Piece p) {
+     public TetrisGame(GraphicTetris gt,Block[][] bm, Piece p, int trocar) {
         super(bm,p);
         timer = new Timer();
         this.gt=gt;
-       
-        
         startGame(1000);
+        setTrocar(trocar);
      }
-     public void save(String Matrix, String Piece) throws IOException {
+     public void save(String Matrix, String Piece, String SavedP) throws IOException {
         System.out.println("teste");
         try (ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(Matrix));) {
@@ -61,6 +62,10 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             try (ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(Piece));) {
             out.writeObject(this.current);
+            }
+            try (ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(SavedP));) {
+            out.writeObject(this.piece);
             }
         
     } 
@@ -79,9 +84,13 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         }
     }
      
-
-
- 
+     public static Piece loadSavedP(String savedP) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(savedP))) {
+            return  (Piece) in.readObject();
+        }
+    }
+     
 
     public void startGame(int delay) {
         timer.schedule(new MoveGame(), 0 , delay);
@@ -94,13 +103,32 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         gt.text("Pontuação: "+count);
     }
     
+    public void savePiece() {
+        
+        if (piece == null) {
+            piece = current;
+            trocar++;
+            generateRandomPiece();
+            gt.revalidate();
+            gt.repaint();
+        } else {
+            if (trocar == 0) {
+                trocar++;
+                Piece aux = current;
+                current = piece;
+                piece = aux;
+                current.setLinha(0);
+                current.setColuna(0);
+                gt.revalidate();
+                gt.repaint();
+            }
+
+        }
+    }
 
     public void stopGame() {
         timer.cancel();
         //.........
-
- 
-
     }
 
  
@@ -203,13 +231,28 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     
     @Override
     public void freezePiece() {
+        System.out.println("freeze: " + trocar);
+        setTrocar(0);
         //call freeze of board
         super.freezePiece();
         //delete lines
         deleteFullLines();
     }
+
+
+    public void setPiece(Piece piece) {
+        this.piece = piece;
+    }
     
+
+    public int getTrocar() {
+        return trocar;
+    }
     
+    public void setTrocar(int troca) {
+        this.trocar = troca;
+        System.out.println(this.trocar);
+    }
 
  
 

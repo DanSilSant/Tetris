@@ -23,8 +23,8 @@ import tetris.lib.board.TetrisGame;
 public class GraphicTetris extends javax.swing.JFrame {
 
     String mensagem="";
-    char[] array = new char[100];
-
+    char[] array = new char[1];
+    char[] arrayLbl = new char[100];
     
     
     
@@ -34,8 +34,14 @@ public class GraphicTetris extends javax.swing.JFrame {
         if (this.novoJogo == 1) {
 
             try {
-                tetrisGame1 = new TetrisGame(this, TetrisGame.loadM(filename), TetrisGame.loadP(filenameP));
+                // Creates a reader using the FileReader
+            FileReader input = new FileReader("trocar.txt");
 
+            // Reads characters
+            input.read(array);
+                //mensagem += array[0];
+                tetrisGame1 = new TetrisGame(this, TetrisGame.loadM(filename), TetrisGame.loadP(filenameP), Character.getNumericValue(array[0]));
+                tetrisGame1.setPiece(TetrisGame.loadSavedP(filenameSP));
             } catch (IOException | ClassNotFoundException e) {
                 System.out.println(e);
             }
@@ -51,14 +57,13 @@ public class GraphicTetris extends javax.swing.JFrame {
             FileReader input = new FileReader("name.txt");
 
             // Reads characters
-            input.read(array);
-            for (int i = 0; i < array.length; i++) {
-                mensagem += array[i];
+            input.read(arrayLbl);
+            mensagem ="";
+            for (int i = 0; i < arrayLbl.length; i++) {
+                mensagem += arrayLbl[i];
 
             }
-
             jLabel1.setText(mensagem);
-            System.out.println(array);
 
             // Closes the reader
             input.close();
@@ -381,6 +386,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFallDownActionPerformed
 
     private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
+        tetrisGame1.stopGame();
         this.dispose();
         new Menu().setVisible(true);
     }//GEN-LAST:event_BtnMenuActionPerformed
@@ -463,6 +469,13 @@ public class GraphicTetris extends javax.swing.JFrame {
             this.revalidate();
             this.repaint();
         }
+        
+        if (evt.getKeyCode() == 81) {
+            System.out.println(tetrisGame1.getTrocar());
+            tetrisGame1.savePiece();
+            this.revalidate();
+            this.repaint();
+        }
     }//GEN-LAST:event_formKeyPressed
 
     private void guardarJogoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarJogoBtnActionPerformed
@@ -470,10 +483,13 @@ public class GraphicTetris extends javax.swing.JFrame {
 
         try {
             PrintWriter writer = new PrintWriter("name.txt", "UTF-8");
+            PrintWriter writert = new PrintWriter("trocar.txt", "UTF-8");
             writer.print(jLabel1.getText());
             writer.close();
+            writert.print(tetrisGame1.getTrocar());
+            writert.close();
             // TODO add your handling code here:
-            tetrisGame1.save(filename, filenameP);
+            tetrisGame1.save(filename, filenameP,filenameSP);
         } catch (Exception ex) {
             System.out.println(ex);
         }
@@ -533,6 +549,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     private int novoJogo = 0;
     private String filename = "teste.obj";
     private String filenameP = "testeP.obj";
+    private String filenameSP = "testeSP.obj";
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDown;
     private javax.swing.JButton BtnMenu;
