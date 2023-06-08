@@ -22,7 +22,7 @@ import tetris.lib.pieces.PieceZ;
  *
  * @author danie
  */
-public final class TetrisBoard extends BlockMatrix {
+public class TetrisBoard extends BlockMatrix {
 
     protected Piece current;
 
@@ -43,7 +43,7 @@ public final class TetrisBoard extends BlockMatrix {
     }
 
     public TetrisBoard() {
-        this(30, 20);
+        this(20, 10);
     }
 
     public TetrisBoard(Block[][] mat, Piece current) {
@@ -56,15 +56,20 @@ public final class TetrisBoard extends BlockMatrix {
     }
 
     public TetrisBoard(int lines, int cols) {
-        //contruir a matriz de blocos
+        resize(lines,cols);
+    }
+    
+    public void resize(int lines,int cols){
+     //preencher a matriz com blocos vazios
         this.matrix = new Block[lines][cols];
-        //preencher a matriz com blocos vazios
         for (int l = 0; l < lines; l++) {
             for (int c = 0; c < cols; c++) {
                 matrix[l][c] = new Empty();
             }
         }
+        
         generateRandomPiece();
+        
     }
 
     public void generateRandomPiece() {
@@ -180,26 +185,35 @@ public final class TetrisBoard extends BlockMatrix {
     public void moveLeft() {
         if (canMovePiece(0, -1)) {
             current.moveLeft();
+            revalidate();
             repaint();
+            
         }
     }
 
     public void moveRight() {
         if (canMovePiece(0, 1)) {
             current.moveRight();
+            revalidate();
             repaint();
+            
         }
     }
 
     public void moveDown() {
         if (canMovePiece(1, 0)) {
             current.moveDown();
-            repaint();
+            this.revalidate();
+            this.repaint();
+            
+            
+            
         } else {
             //caso não seja possível deslocar para baixo
             //congela a peça na matriz e gera a próxima peça
             freezePiece();
             generateRandomPiece();
+            revalidate();
             repaint();
         }
     }
@@ -207,7 +221,9 @@ public final class TetrisBoard extends BlockMatrix {
     public void fallDown() {
         while (canMovePiece(1, 0)) {
             current.moveDown();
+            revalidate();
             repaint();
+            
         }
         //quando a peça não se pode deslocar mais para baixo
         //congela a peça na matriz e gera a próxima peça
