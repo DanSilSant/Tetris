@@ -6,7 +6,9 @@ package tetris.GUI;
 
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -14,38 +16,58 @@ import javax.swing.JSpinner;
 import tetris.lib.board.TetrisBoard;
 import tetris.lib.board.TetrisGame;
 
-
-
-
 /**
  *
  * @author danie
  */
 public class GraphicTetris extends javax.swing.JFrame {
-    
-    
 
+    String mensagem="";
+    char[] array = new char[100];
+
+    
+    
+    
     public GraphicTetris(int novoJogo) throws IOException, ClassNotFoundException {
-        this.novoJogo=novoJogo;
+        this.novoJogo = novoJogo;
         System.out.println(novoJogo);
-        if(this.novoJogo==1){
-            
-        
-        try{
-            tetrisGame1=new TetrisGame(this,TetrisGame.loadM(filename),TetrisGame.loadP(filenameP));
-        }catch(IOException | ClassNotFoundException e) {
-            System.out.println(e);
+        if (this.novoJogo == 1) {
+
+            try {
+                tetrisGame1 = new TetrisGame(this, TetrisGame.loadM(filename), TetrisGame.loadP(filenameP));
+
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println(e);
+            }
+        } else {
+            tetrisGame1 = new tetris.lib.board.TetrisGame(GraphicTetris.this);
         }
-        }else{
-		tetrisGame1 = new tetris.lib.board.TetrisGame(GraphicTetris.this);
-		}
-        
+
         initComponents();
         
-        
+        if (this.novoJogo == 1) {
+        try {
+            // Creates a reader using the FileReader
+            FileReader input = new FileReader("name.txt");
 
-    }
-   
+            // Reads characters
+            input.read(array);
+            for (int i = 0; i < array.length; i++) {
+                mensagem += array[i];
+
+            }
+
+            jLabel1.setText(mensagem);
+            System.out.println(array);
+
+            // Closes the reader
+            input.close();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+    }}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -302,33 +324,22 @@ public class GraphicTetris extends javax.swing.JFrame {
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
         //construir o jogo
-        tetrisGame1.newGame(lines,columns);
-        
-        
-        
-        
-        
-        
-       
-        
-        
-        
-        
+        tetrisGame1.newGame(lines, columns);
 
 
     }//GEN-LAST:event_btnCreateGameActionPerformed
 
-    public void gameOver(){
+    public void gameOver() {
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
         this.dispose();
         new Menu().setVisible(true);
     }
-    
-    public void text(String message){
+
+    public void text(String message) {
         jLabel1.setText(message);
     }
-    
-    
+
+
     private void btnRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRightActionPerformed
         // TODO add your handling code here:
         tetrisGame1.moveRight();
@@ -375,31 +386,29 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnMenuActionPerformed
 
     private void BtnRotateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnRotateKeyPressed
-        
+
     }//GEN-LAST:event_BtnRotateKeyPressed
 
     private void btnLeftKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLeftKeyPressed
-        
+
     }//GEN-LAST:event_btnLeftKeyPressed
 
     private void BtnDownKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnDownKeyPressed
-        
+
     }//GEN-LAST:event_BtnDownKeyPressed
 
     private void btnRightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnRightKeyPressed
-       
+
     }//GEN-LAST:event_btnRightKeyPressed
 
     private void btnFallDownKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnFallDownKeyPressed
-        
+
     }//GEN-LAST:event_btnFallDownKeyPressed
 
     private void btnCreateGameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCreateGameKeyPressed
         // TODO add your handling code here:
-        
-        
+
         //jogar com o teclado (não está a funcionar
-        
         /*int key = evt.getKeyCode();  // Keyboard code for the pressed key.
 
         if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
@@ -427,50 +436,54 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateGameKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
-             
-            if(evt.getKeyCode()==87 || evt.getKeyCode()==38 ){
-                
-                tetrisGame1.rotate();
-                this.revalidate();
-        this.repaint();
-            }
-            if(evt.getKeyCode()==68 || evt.getKeyCode()==39 ){
-                tetrisGame1.moveRight();
-                this.revalidate();
-        this.repaint();
-            }
-            if(evt.getKeyCode()==65 || evt.getKeyCode()==37 ){
-                tetrisGame1.moveLeft();
-                this.revalidate();
-        this.repaint();
-            }
-            if(evt.getKeyCode()==83 || evt.getKeyCode()==40 ){
-                tetrisGame1.moveDown();
-                this.revalidate();
-        this.repaint();
-            }
-            if(evt.getKeyCode()==32){
-                tetrisGame1.fallDown();
-                this.revalidate();
-        this.repaint();
-            }
+
+        if (evt.getKeyCode() == 87 || evt.getKeyCode() == 38) {
+
+            tetrisGame1.rotate();
+            this.revalidate();
+            this.repaint();
+        }
+        if (evt.getKeyCode() == 68 || evt.getKeyCode() == 39) {
+            tetrisGame1.moveRight();
+            this.revalidate();
+            this.repaint();
+        }
+        if (evt.getKeyCode() == 65 || evt.getKeyCode() == 37) {
+            tetrisGame1.moveLeft();
+            this.revalidate();
+            this.repaint();
+        }
+        if (evt.getKeyCode() == 83 || evt.getKeyCode() == 40) {
+            tetrisGame1.moveDown();
+            this.revalidate();
+            this.repaint();
+        }
+        if (evt.getKeyCode() == 32) {
+            tetrisGame1.fallDown();
+            this.revalidate();
+            this.repaint();
+        }
     }//GEN-LAST:event_formKeyPressed
 
     private void guardarJogoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarJogoBtnActionPerformed
         // TODO add your handling code here:
-         try {
+
+        try {
+            PrintWriter writer = new PrintWriter("name.txt", "UTF-8");
+            writer.print(jLabel1.getText());
+            writer.close();
             // TODO add your handling code here:
-            tetrisGame1.save(filename,filenameP);
+            tetrisGame1.save(filename, filenameP);
         } catch (Exception ex) {
-            System.out.println(ex);        }
+            System.out.println(ex);
+        }
+
     }//GEN-LAST:event_guardarJogoBtnActionPerformed
 
-
-
-    
     /**
      * @param args the command line arguments
-     */public static void main(String args[]) {
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -517,7 +530,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             }
         });
     }
-    private int novoJogo=0;
+    private int novoJogo = 0;
     private String filename = "teste.obj";
     private String filenameP = "testeP.obj";
     // Variables declaration - do not modify//GEN-BEGIN:variables

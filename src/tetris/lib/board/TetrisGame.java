@@ -78,6 +78,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             return  (Piece) in.readObject();
         }
     }
+     
 
 
  
@@ -92,6 +93,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         count=0;
         gt.text("Pontuação: "+count);
     }
+    
 
     public void stopGame() {
         timer.cancel();
