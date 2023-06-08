@@ -6,6 +6,8 @@ package tetris.GUI;
 
 import java.awt.Frame;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -36,6 +38,7 @@ public class Menu extends javax.swing.JFrame {
         BtnPlay = new javax.swing.JButton();
         IconTetris = new javax.swing.JLabel();
         BtnAbout1 = new javax.swing.JButton();
+        BtnPlay1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Text Tetris");
@@ -78,13 +81,22 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        BtnPlay1.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
+        BtnPlay1.setText("Carregar jogo");
+        BtnPlay1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPlay1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnPlay1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnRules, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnAbout1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -104,13 +116,15 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(LblTetrisVer, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(BtnPlay, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(BtnRules, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(BtnPlay1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(BtnRules, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(BtnAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnAbout1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -130,6 +144,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void BtnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPlayActionPerformed
         // TODO add your handling code here:
+       
         this.dispose();
         new GraphicTetris().setVisible(true);
         
@@ -139,6 +154,10 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_BtnAbout1ActionPerformed
+
+    private void BtnPlay1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPlay1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnPlay1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,6 +198,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton BtnAbout;
     private javax.swing.JButton BtnAbout1;
     private javax.swing.JButton BtnPlay;
+    private javax.swing.JButton BtnPlay1;
     private javax.swing.JButton BtnRules;
     private javax.swing.JLabel IconTetris;
     private javax.swing.JLabel LblTetrisVer;

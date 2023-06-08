@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
 import java.util.TimerTask;
 import java.util.Timer;
 import tetris.lib.blocks.Empty;
@@ -27,7 +28,7 @@ import tetris.lib.pieces.PieceI;
  *
  * @author danie
  */
-public final class TetrisGame extends TetrisBoard implements Serializable{
+public  class TetrisGame extends TetrisBoard implements Serializable{
 
  
 
@@ -45,19 +46,21 @@ public final class TetrisGame extends TetrisBoard implements Serializable{
         super();
         timer = new Timer();
         this.gt=gt;
+        
        
         
         startGame(1000);
     }
+    /*
     public TetrisGame(GraphicTetris gt,Block[][] bm, Piece p) {
-        super.load(bm, p);
+        super(bm,p);
         timer = new Timer();
         this.gt=gt;
        
         
         startGame(1000);
     }
-
+*/
  
 
     public void startGame(int delay) {
