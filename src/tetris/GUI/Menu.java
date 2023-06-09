@@ -139,7 +139,7 @@ public class Menu extends javax.swing.JFrame {
     private void BtnPlayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPlayActionPerformed
         // TODO add your handling code here:
         
-        UIManager.put("OptionPane.yesButtonText", "Recomeçar de onde fiquei");
+        /*UIManager.put("OptionPane.yesButtonText", "Recomeçar de onde fiquei");
         UIManager.put("OptionPane.noButtonText", "Novo Jogo");
         String[] buttons = { "Novo Jogo", "Continuar"}; 
         ImageIcon icon = new ImageIcon("src/tetris/images/tetris.png");
@@ -148,16 +148,17 @@ public class Menu extends javax.swing.JFrame {
         Icon scaledIcon = new ImageIcon( scaledImage );
 
         int returnValue = JOptionPane.showOptionDialog(null, "Criar novo jogo?", "Criar novo jogo?",
-        JOptionPane.DEFAULT_OPTION, 0, scaledIcon, buttons, buttons[0]);
+        JOptionPane.DEFAULT_OPTION, 0, scaledIcon, buttons, buttons[0]);*/
         this.dispose();
-        System.out.println(returnValue);
+        new GraphicTetris().setVisible(true);
+        /*System.out.println(returnValue);
         try {
             new GraphicTetris(returnValue).setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         
     }//GEN-LAST:event_BtnPlayActionPerformed
 

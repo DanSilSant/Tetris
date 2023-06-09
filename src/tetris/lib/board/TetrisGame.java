@@ -157,7 +157,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     public boolean isGameOver() {
         return current.getLinha() == 0 //esta no top
-                && !canMovePiece(1, 0); //não pode descer
+                && !board.canMovePiece(1, 0); //não pode descer
 
     }
 

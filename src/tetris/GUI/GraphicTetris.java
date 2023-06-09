@@ -22,17 +22,18 @@ import tetris.lib.board.TetrisGame;
  */
 public class GraphicTetris extends javax.swing.JFrame {
 
-    String mensagem="";
+    String mensagem = "";
     char[] array = new char[1];
     char[] arrayLbl = new char[100];
-    
-    
-    public GraphicTetris(){
+
+    public GraphicTetris() {
+        tetrisGame1 = new tetris.lib.board.TetrisGame();
+        tetrisGame1.setGt(GraphicTetris.this);
         initComponents();
-        
+
     }
-    
-    public GraphicTetris(int novoJogo) throws IOException, ClassNotFoundException {
+
+    /*public GraphicTetris(int novoJogo) throws IOException, ClassNotFoundException {
         this.novoJogo = novoJogo;
         System.out.println(novoJogo);
         if (this.novoJogo == 1) {
@@ -76,8 +77,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             e.getStackTrace();
         }
 
-    }}
-
+    }}*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -417,7 +417,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFallDownKeyPressed
 
     private void btnCreateGameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCreateGameKeyPressed
-       
+
     }//GEN-LAST:event_btnCreateGameKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -448,7 +448,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             this.revalidate();
             this.repaint();
         }
-        
+
         if (evt.getKeyCode() == 81) {
             System.out.println(tetrisGame1.getTrocar());
             tetrisGame1.savePiece();
@@ -508,25 +508,19 @@ public class GraphicTetris extends javax.swing.JFrame {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    GraphicTetris dialog = new GraphicTetris(0);
-                    dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                        @Override
-                        public void windowClosing(java.awt.event.WindowEvent e) {
-                            System.exit(0);
-                        }
-                    });
-                    dialog.setVisible(true);
-                } catch (IOException ex) {
-                    Logger.getLogger(GraphicTetris.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(GraphicTetris.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                GraphicTetris dialog = new GraphicTetris();
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
-    
-    public GraphicTetris getGT(){
+
+    public GraphicTetris getGT() {
         return this;
     }
     private int novoJogo = 0;
