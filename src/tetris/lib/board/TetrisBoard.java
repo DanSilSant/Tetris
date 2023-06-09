@@ -5,6 +5,7 @@
 package tetris.lib.board;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 import tetris.lib.blocks.Block;
 import tetris.lib.blocks.BlockMatrix;
@@ -25,6 +26,8 @@ import tetris.lib.pieces.PieceZ;
 public class TetrisBoard extends BlockMatrix {
 
     protected Piece current;
+    
+    protected ArrayList<Piece> arrayP;
 
     @Override
     public void paintComponent(Graphics g) {
@@ -44,6 +47,8 @@ public class TetrisBoard extends BlockMatrix {
 
     public TetrisBoard() {
         this(20, 10);
+        generateArrayPiece();
+        
     }
 
     public TetrisBoard(Block[][] mat, Piece current) {
@@ -57,6 +62,7 @@ public class TetrisBoard extends BlockMatrix {
 
     public TetrisBoard(int lines, int cols) {
         resize(lines,cols);
+        generateArrayPiece();
     }
     
     public void resize(int lines,int cols){
@@ -94,6 +100,23 @@ public class TetrisBoard extends BlockMatrix {
         }
         repaint();
 
+    }
+    
+    public ArrayList<Piece> generateArrayPiece(){
+        arrayP = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            generateRandomPiece();
+             arrayP.add(this.current);
+             this.current = arrayP.get(0);
+        }
+        return arrayP;           
+    }
+    
+    public void removePiece(){
+        arrayP.remove(0);
+        generateRandomPiece();
+        arrayP.add(current);
+        this.current = arrayP.get(0);
     }
 
     public void freezePiece() {

@@ -27,6 +27,10 @@ public class GraphicTetris extends javax.swing.JFrame {
     char[] arrayLbl = new char[100];
     
     
+    public GraphicTetris(){
+        initComponents();
+        
+    }
     
     public GraphicTetris(int novoJogo) throws IOException, ClassNotFoundException {
         this.novoJogo = novoJogo;
@@ -46,7 +50,8 @@ public class GraphicTetris extends javax.swing.JFrame {
                 System.out.println(e);
             }
         } else {
-            tetrisGame1 = new tetris.lib.board.TetrisGame(GraphicTetris.this);
+            tetrisGame1 = new tetris.lib.board.TetrisGame();
+            tetrisGame1.setGt(GraphicTetris.this);
         }
 
         initComponents();
@@ -412,33 +417,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFallDownKeyPressed
 
     private void btnCreateGameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCreateGameKeyPressed
-        // TODO add your handling code here:
-
-        //jogar com o teclado (não está a funcionar
-        /*int key = evt.getKeyCode();  // Keyboard code for the pressed key.
-
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
-            tetris.rotate();
-
-        }if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
-            tetris.moveLeft();
-
-        }if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
-            tetris.moveDown();
-
-        }if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
-            tetris.moveRight();
-
-        }if (key == KeyEvent.VK_SPACE) {
-            tetris.fallDown();
-
-        }if (key == KeyEvent.VK_ENTER) {
-            int lines = (Integer) SpnLinha.getValue();
-            int columns = (Integer) SpnColuna.getValue();
-            //construir o jogo
-            this.tetris = new TetrisBoard(lines, columns);
-
-        }*/
+       
     }//GEN-LAST:event_btnCreateGameKeyPressed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
@@ -481,7 +460,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     private void guardarJogoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarJogoBtnActionPerformed
         // TODO add your handling code here:
 
-        try {
+        /*try {
             PrintWriter writer = new PrintWriter("name.txt", "UTF-8");
             PrintWriter writert = new PrintWriter("trocar.txt", "UTF-8");
             writer.print(jLabel1.getText());
@@ -492,7 +471,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             tetrisGame1.save(filename, filenameP,filenameSP);
         } catch (Exception ex) {
             System.out.println(ex);
-        }
+        }*/
 
     }//GEN-LAST:event_guardarJogoBtnActionPerformed
 
@@ -545,6 +524,10 @@ public class GraphicTetris extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    
+    public GraphicTetris getGT(){
+        return this;
     }
     private int novoJogo = 0;
     private String filename = "teste.obj";
