@@ -29,6 +29,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     
     
     public GraphicTetris(int novoJogo) throws IOException, ClassNotFoundException {
+        
         this.novoJogo = novoJogo;
         System.out.println(novoJogo);
         if (this.novoJogo == 1) {
@@ -46,7 +47,8 @@ public class GraphicTetris extends javax.swing.JFrame {
                 System.out.println(e);
             }
         } else {
-            tetrisGame1 = new tetris.lib.board.TetrisGame(GraphicTetris.this);
+            tetrisGame1 = new tetris.lib.board.TetrisGame();
+            tetrisGame1.setGT(GraphicTetris.this);
         }
 
         initComponents();
@@ -546,6 +548,8 @@ public class GraphicTetris extends javax.swing.JFrame {
             }
         });
     }
+    
+   
     private int novoJogo = 0;
     private String filename = "teste.obj";
     private String filenameP = "testeP.obj";

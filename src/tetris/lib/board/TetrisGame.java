@@ -30,7 +30,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
  
 
     Timer timer;
-    GraphicTetris gt;
+    protected GraphicTetris gt;
     int count=0;
     Piece piece;
     int trocar;
@@ -39,11 +39,11 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
  
 
-    public TetrisGame(GraphicTetris gt) {
+    public TetrisGame() {
         super();
         timer = new Timer();
-        this.gt=gt;
         startGame(1000);
+        
         
     }
      public TetrisGame(GraphicTetris gt,Block[][] bm, Piece p, int trocar) {
@@ -139,6 +139,10 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
  
 
+    }
+    
+    public void setGT(GraphicTetris gt){
+        this.gt=gt;
     }
 
  
