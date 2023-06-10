@@ -5,6 +5,7 @@
 package tetris.lib.board;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
 import java.util.Random;
 import tetris.lib.blocks.Block;
 import tetris.lib.blocks.BlockMatrix;
@@ -23,9 +24,14 @@ import tetris.lib.pieces.PieceZ;
  * @author danie
  */
 public class TetrisBoard extends BlockMatrix {
-    
 
     protected Piece current;
+
+    protected ArrayList<Piece> arrayP;
+
+    protected Piece hold;
+    
+    protected int trocar;
 
     @Override
     public void paintComponent(Graphics g) {
@@ -49,7 +55,7 @@ public class TetrisBoard extends BlockMatrix {
 
     public TetrisBoard(Block[][] mat, Piece current) {
         super(mat);
-        this.current = new Piece(current);
+               
     }
 
     public TetrisBoard(TetrisBoard board) {
@@ -58,6 +64,7 @@ public class TetrisBoard extends BlockMatrix {
 
     public TetrisBoard(int lines, int cols) {
         resize(lines,cols);
+        generateArrayPiece();
     }
     
     public void resize(int lines,int cols){
@@ -96,6 +103,25 @@ public class TetrisBoard extends BlockMatrix {
         repaint();
 
     }
+    
+        public ArrayList<Piece> generateArrayPiece(){
+        arrayP = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            generateRandomPiece();
+             arrayP.add(this.current);
+             current = arrayP.get(0);
+        }
+        return arrayP;           
+    }
+    
+    public void removePiece(){
+        arrayP.remove(0);
+        generateRandomPiece();
+        arrayP.add(current);
+        current = arrayP.get(0);
+    }
+    
+    
 
     public void freezePiece() {
         for (int l = 0; l < current.getLines(); l++) {
@@ -239,6 +265,29 @@ public class TetrisBoard extends BlockMatrix {
             repaint();
         }
 
+    }
+    
+    public void savePiece() {
+
+        if (hold == null) {
+            hold = current;
+            trocar++;
+            removePiece();
+            revalidate();
+            repaint();
+        } else {
+            if (trocar == 0) {
+                trocar++;
+                Piece aux = current;
+                current = hold;
+                hold = aux;
+                current.setLinha(0);
+                current.setColuna(0);
+                revalidate();
+                repaint();
+            }
+
+        }
     }
 
     public Piece getCurrent() {
