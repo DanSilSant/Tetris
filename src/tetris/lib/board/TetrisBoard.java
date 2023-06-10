@@ -26,6 +26,8 @@ import tetris.lib.pieces.PieceZ;
 public class TetrisBoard extends BlockMatrix {
 
     protected Piece current;
+    
+    protected Piece shadow;
 
     protected ArrayList<Piece> arrayP;
 
@@ -76,7 +78,6 @@ public class TetrisBoard extends BlockMatrix {
             }
         }
         
-        generateRandomPiece();
         
     }
 
@@ -119,6 +120,10 @@ public class TetrisBoard extends BlockMatrix {
         generateRandomPiece();
         arrayP.add(current);
         current = arrayP.get(0);
+        revalidate();
+        for (int i = 0; i < 4; i++) {
+                System.out.println("asfasfa" + arrayP.get(i));
+            }
     }
     
     
@@ -240,7 +245,7 @@ public void freezePiece() {
             //caso não seja possível deslocar para baixo
             //congela a peça na matriz e gera a próxima peça
             freezePiece();
-            generateRandomPiece();
+            removePiece();
             revalidate();
             repaint();
         }
@@ -256,7 +261,7 @@ public void freezePiece() {
         //quando a peça não se pode deslocar mais para baixo
         //congela a peça na matriz e gera a próxima peça
         freezePiece();
-        generateRandomPiece();
+        removePiece();
         repaint();
     }
 
@@ -297,6 +302,10 @@ public void freezePiece() {
 
     public void setCurrent(Piece current) {
         this.current = current;
+    }
+    
+    public Piece nextP(){
+        return arrayP.get(1);
     }
     
 

@@ -479,8 +479,7 @@ public void showP(){
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
              
-            if(evt.getKeyCode()==87 || evt.getKeyCode()==38 ){
-                
+            if(evt.getKeyCode()==87 || evt.getKeyCode()==38 ){   
                 tetrisGame1.rotate();
                 this.revalidate();
         this.repaint();
@@ -502,8 +501,7 @@ public void showP(){
             }
             if(evt.getKeyCode()==32){
                 tetrisGame1.fallDown();
-                this.revalidate();
-                
+                this.revalidate();                
         this.repaint();
             }
              if (evt.getKeyCode() == 81) {

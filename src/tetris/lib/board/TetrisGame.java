@@ -43,7 +43,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     protected int pontos;
 
     public TetrisGame() {
-        this(20, 10, 1000);   
+        this(20, 10, 350);   
     }
 
     public TetrisGame(int lines, int columns, int delay) {
@@ -133,13 +133,13 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
         @Override
         public void run() {
-            
+            gt.showP();
             if (isGameOver()) {
                 gt.gameOver();
                 stopGame();
 
             } else if (canMovePiece(1, 0)) {
-                gt.showP();
+                
                 System.out.println("dwadwadw");
                 moveDown();
                 gt.revalidate();
@@ -148,8 +148,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
             } else {
                 freezePiece();
-                generateRandomPiece();
-                
+                removePiece();              
                 gt.revalidate();
                 gt.repaint();
 
@@ -223,9 +222,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         System.out.println(this.trocar);
     }
     
-    public Piece nextP(){
-        return current;
-    }
+    
     
 
     
