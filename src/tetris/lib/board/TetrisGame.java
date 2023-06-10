@@ -196,12 +196,14 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     @Override
     public void freezePiece() {
+        gt.showP();
         System.out.println("freeze: " + trocar);
         setTrocar(0);
         //call freeze of board
         super.freezePiece();
         //delete lines
         deleteFullLines();
+        
     }
 
     public void setPiece(Piece piece) {

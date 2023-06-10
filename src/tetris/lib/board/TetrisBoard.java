@@ -297,5 +297,12 @@ public class TetrisBoard extends BlockMatrix {
     public void setCurrent(Piece current) {
         this.current = current;
     }
+    public ArrayList<Piece> arrayPDisplay(){
+    ArrayList<Piece> aux = new ArrayList<>();
+    for (int i=1;i<4;i++){
+        aux.add(arrayP.get(i));
+    }
+    return aux;
+    }
 
 }
