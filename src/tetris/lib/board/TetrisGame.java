@@ -34,42 +34,26 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     int trocar;*/
     protected TetrisBoard board;
 
-    protected ArrayList<Piece> arrayP;
-
-    protected Piece current;
-
-    protected Piece hold;
-
     protected GraphicTetris gt;
 
     protected Timer timer;
 
     protected int delay;
 
-    protected int trocar;
-
     protected int pontos;
 
     public TetrisGame() {
-        this(20, 10, 1000);
+        this(20, 10, 1000);   
     }
 
     public TetrisGame(int lines, int columns, int delay) {
         this.board = new TetrisBoard(lines, columns);
-        this.current = board.current;
         this.timer = new Timer();
         startGame(delay);
 
     }
     
-    public TetrisGame(GraphicTetris gt, int lines, int columns, int delay) {
-        this.board = new TetrisBoard(lines, columns);
-        this.gt = gt;
-        this.current = board.current;
-        this.timer = new Timer();
-        startGame(delay);
 
-    }
 
     public TetrisGame(GraphicTetris gt, Block[][] bm, Piece p, int trocar) {
         super(bm, p);
@@ -79,7 +63,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         setTrocar(trocar);
     }
 
-    public void save(String Matrix, String Piece, String SavedP) throws IOException {
+   /* public void save(String Matrix, String Piece, String SavedP) throws IOException {
         System.out.println("teste");
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(Matrix));) {
@@ -87,14 +71,14 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         }
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(Piece));) {
-            out.writeObject(this.current);
+            out.writeObject(this.atual);
         }
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(SavedP));) {
-            out.writeObject(this.hold);
+            out.writeObject(board.hold);
         }
 
-    }
+    }*/
 
     public static Block[][] loadM(String matrix) throws IOException, ClassNotFoundException {
         try ( ObjectInputStream in = new ObjectInputStream(
@@ -127,28 +111,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         gt.text("Pontuação: " + pontos);
     }
 
-    public void savePiece() {
-
-        if (hold == null) {
-            hold = current;
-            trocar++;
-            removePiece();
-            gt.revalidate();
-            gt.repaint();
-        } else {
-            if (trocar == 0) {
-                trocar++;
-                Piece aux = current;
-                current = hold;
-                hold = aux;
-                current.setLinha(0);
-                current.setColuna(0);
-                gt.revalidate();
-                gt.repaint();
-            }
-
-        }
-    }
+    
 
     public void stopGame() {
         timer.cancel();
@@ -157,7 +120,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     public boolean isGameOver() {
         return current.getLinha() == 0 //esta no top
-                && !board.canMovePiece(1, 0); //não pode descer
+                && !canMovePiece(1, 0); //não pode descer
 
     }
 
@@ -253,6 +216,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         this.trocar = troca;
         System.out.println(this.trocar);
     }
+    
 
     
 }

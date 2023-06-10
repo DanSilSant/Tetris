@@ -26,8 +26,12 @@ import tetris.lib.pieces.PieceZ;
 public class TetrisBoard extends BlockMatrix {
 
     protected Piece current;
-    
+
     protected ArrayList<Piece> arrayP;
+
+    protected Piece hold;
+    
+    protected int trocar;
 
     @Override
     public void paintComponent(Graphics g) {
@@ -47,13 +51,11 @@ public class TetrisBoard extends BlockMatrix {
 
     public TetrisBoard() {
         this(20, 10);
-        generateArrayPiece();
-        
     }
 
     public TetrisBoard(Block[][] mat, Piece current) {
         super(mat);
-        this.current = new Piece(current);
+               
     }
 
     public TetrisBoard(TetrisBoard board) {
@@ -102,12 +104,12 @@ public class TetrisBoard extends BlockMatrix {
 
     }
     
-    public ArrayList<Piece> generateArrayPiece(){
+        public ArrayList<Piece> generateArrayPiece(){
         arrayP = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             generateRandomPiece();
              arrayP.add(this.current);
-             this.current = arrayP.get(0);
+             current = arrayP.get(0);
         }
         return arrayP;           
     }
@@ -116,8 +118,10 @@ public class TetrisBoard extends BlockMatrix {
         arrayP.remove(0);
         generateRandomPiece();
         arrayP.add(current);
-        this.current = arrayP.get(0);
+        current = arrayP.get(0);
     }
+    
+    
 
     public void freezePiece() {
         for (int l = 0; l < current.getLines(); l++) {
@@ -261,6 +265,29 @@ public class TetrisBoard extends BlockMatrix {
             repaint();
         }
 
+    }
+    
+    public void savePiece() {
+
+        if (hold == null) {
+            hold = current;
+            trocar++;
+            removePiece();
+            revalidate();
+            repaint();
+        } else {
+            if (trocar == 0) {
+                trocar++;
+                Piece aux = current;
+                current = hold;
+                hold = aux;
+                current.setLinha(0);
+                current.setColuna(0);
+                revalidate();
+                repaint();
+            }
+
+        }
     }
 
     public Piece getCurrent() {
