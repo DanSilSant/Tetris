@@ -292,6 +292,7 @@
     </Component>
     <Container class="tetris.lib.board.TetrisGame" name="tetrisGame1">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="showP();"/>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new tetris.lib.board.TetrisGame()"/>
         <AuxValue name="JavaCodeGenerator_LayoutCodePre" type="java.lang.String" value="tetrisGame1.setGt(GraphicTetris.this);"/>
       </AuxValues>

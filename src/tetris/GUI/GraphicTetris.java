@@ -303,6 +303,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         //SpnLinha.setStepSize(8);
         SpnColuna.setValue(10);
         //SpnColuna.setStepSize(4);
+        showP();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -347,8 +348,10 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.requestFocus();
     }//GEN-LAST:event_btnRightActionPerformed
 public void showP(){
-    
-    for(Piece p : tetrisGame1.arrayPDisplay()){
+    try{
+    jPanel1.removeAll();
+    Piece p=tetrisGame1.nextP();
+    System.out.println(p.toString());
             javax.swing.GroupLayout pieceI1Layout = new javax.swing.GroupLayout(p);
         p.setLayout(pieceI1Layout);
         pieceI1Layout.setHorizontalGroup(
@@ -376,7 +379,13 @@ public void showP(){
                 .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(249, Short.MAX_VALUE))
         );
-       }
+        validate();
+        repaint();
+    }catch(Exception ex){
+        System.out.println(ex);
+    }
+        
+       
 }
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
         // TODO add your handling code here:
@@ -494,6 +503,7 @@ public void showP(){
             if(evt.getKeyCode()==32){
                 tetrisGame1.fallDown();
                 this.revalidate();
+                
         this.repaint();
             }
              if (evt.getKeyCode() == 81) {

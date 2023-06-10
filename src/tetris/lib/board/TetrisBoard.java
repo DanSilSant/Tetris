@@ -123,7 +123,7 @@ public class TetrisBoard extends BlockMatrix {
     
     
 
-    public void freezePiece() {
+public void freezePiece() {
         for (int l = 0; l < current.getLines(); l++) {
             for (int c = 0; c < current.getColumns(); c++) {
                 if (".".equals(matrix[current.getLinha() + l][current.getColuna() + c].toString())) {
@@ -132,6 +132,7 @@ public class TetrisBoard extends BlockMatrix {
                 }
             }
         }
+        
         repaint();
     }
 
@@ -297,12 +298,6 @@ public class TetrisBoard extends BlockMatrix {
     public void setCurrent(Piece current) {
         this.current = current;
     }
-    public ArrayList<Piece> arrayPDisplay(){
-    ArrayList<Piece> aux = new ArrayList<>();
-    for (int i=1;i<4;i++){
-        aux.add(arrayP.get(i));
-    }
-    return aux;
-    }
+    
 
 }
