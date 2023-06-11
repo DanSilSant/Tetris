@@ -55,30 +55,35 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     
 
 
-    public TetrisGame(GraphicTetris gt, Block[][] bm, Piece p, int trocar) {
-        super(bm, p);
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold) {
+        super(bm, arrayP.get(0));
+        current=arrayP.get(0);
+        this.arrayP=arrayP;
+        this.hold=hold;
         timer = new Timer();
-        this.gt = gt;
         startGame(1000);
-        setTrocar(trocar);
     }
 
-   /* public void save(String Matrix, String Piece, String SavedP) throws IOException {
+   	public void save(String Matrix, String Piece, String SavedP) throws IOException {
         System.out.println("teste");
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(Matrix));) {
             out.writeObject(this.matrix);
         }
+        ArrayList<Piece> p = new ArrayList();
+        for(Piece a : this.arrayP){
+            p.add(a.getClone());
+        }
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(Piece));) {
-            out.writeObject(this.atual);
+            out.writeObject(p);
         }
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(SavedP));) {
             out.writeObject(board.hold);
         }
 
-    }*/
+    }
 
     public static Block[][] loadM(String matrix) throws IOException, ClassNotFoundException {
         try ( ObjectInputStream in = new ObjectInputStream(
@@ -87,10 +92,10 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         }
     }
 
-    public static Piece loadP(String piece) throws IOException, ClassNotFoundException {
+    public static ArrayList<Piece> loadP(String piece) throws IOException, ClassNotFoundException {
         try ( ObjectInputStream in = new ObjectInputStream(
                 new FileInputStream(piece))) {
-            return (Piece) in.readObject();
+            return (ArrayList<Piece>) in.readObject();
         }
     }
 
