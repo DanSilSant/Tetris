@@ -53,9 +53,9 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         this(20, 10, 350);   
     }
     public TetrisGame(TetrisGame t){
-            this(t.matrix,t.arrayP,t.hold);
+            this(t.matrix,t.arrayP,t.hold,t.pontos);
             this.gt=t.gt;
-            this.pontos=t.pontos;
+            
         }
     public TetrisGame(int lines, int columns, int delay) {
         this.board = new TetrisBoard(lines, columns);
@@ -65,11 +65,11 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     }
     
-    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP) {
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP,int pontos) {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
+        this.pontos=pontos;
         this.arrayP=arrayP;
-       
         timer = new Timer();
         startGame(350);
         play(9);
@@ -77,12 +77,12 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     
 
 
-    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold) {
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold,int pontos) {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
         this.arrayP=arrayP;
-       
-            this.hold=hold;
+       this.pontos=pontos;
+        this.hold=hold;
         
         timer = new Timer();
         startGame(350);
@@ -131,9 +131,9 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             }
             if(!Objects.isNull(hold)){ 
             Piece e = hold.getClone();
-            return new TetrisGame(matrix,p,e);
+            return new TetrisGame(matrix,p,e,this.pontos);
             }else{
-                return new TetrisGame(matrix,p);
+                return new TetrisGame(matrix,p,this.pontos);
             }
             
 
@@ -169,7 +169,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     public void newGame(int lines, int cols) {
         super.resize(lines, cols);
         pontos = 0;
-        gt.text("Pontuação: " + pontos);
+        gt.setLabelPontos();
     }
 
     
@@ -239,7 +239,9 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         return true;
 
     }
-
+    public int getPontos(){
+        return this.pontos;
+    }
     public void deleteLine(int line) {
         //fall down all columns above line
         for (int y = line; y > 0; y--) //copy line y

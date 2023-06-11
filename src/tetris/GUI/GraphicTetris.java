@@ -176,7 +176,8 @@ public class GraphicTetris extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setFont(new java.awt.Font("Pixeloid Sans", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 153));
 
         guardarJogoBtn.setText("Guardar Jogo");
         guardarJogoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -492,7 +493,10 @@ public class GraphicTetris extends javax.swing.JFrame {
         repaint();
 
     }
-
+    public void setLabelPontos(){
+        jLabel1.setText("Pontuação : " + tetrisGame1.getPontos());
+        
+    }
     public void setLabelHold() {
         jLabel3.setForeground(Color.black);
     }
@@ -663,9 +667,30 @@ public class GraphicTetris extends javax.swing.JFrame {
             JFileChooser j = new JFileChooser();
             j.showSaveDialog(null);
             tetrisGame1.save(j.getSelectedFile().getAbsolutePath() + ".tetris");
+            UIManager.put("OptionPane.yesButtonText", "Continuar");
+            UIManager.put("OptionPane.noButtonText", "Sair para menu");
+            String[] buttons = {"Continuar", "Sair para menu"};
+            ImageIcon icon = new ImageIcon("src/tetris/images/saveIMG");
+            Image image = icon.getImage();
+            Image scaledImage = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+            Icon scaledIcon = new ImageIcon( scaledImage );
+            int returnValue = JOptionPane.showOptionDialog(null, "Jogo guardado com sucesso!", "Jogo guardado",
+                    JOptionPane.DEFAULT_OPTION, 0, scaledIcon, buttons, buttons[0]);
+            
+            if(returnValue==1){
+                tetrisGame1.stopGame();
+                tetrisGame1.stopSound();
+                this.dispose();
+                new Menu().setVisible(true);
+                
+            }else{
+            tetrisGame1.unpauseGame(350);
+            }
         } catch (Exception ex) {
+            tetrisGame1.unpauseGame(350);
             System.out.println(ex);
         }
+        
     }//GEN-LAST:event_guardarJogoBtnActionPerformed
 
     private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBtnActionPerformed
@@ -713,6 +738,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         );
 
         showH();
+        setLabelPontos();
         setLabelHold();
         revalidate();
         repaint();
