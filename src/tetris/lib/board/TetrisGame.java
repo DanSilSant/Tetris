@@ -4,8 +4,6 @@ package tetris.lib.board;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -18,7 +16,6 @@ import java.util.TimerTask;
 import java.util.Timer;
 import javax.sound.sampled.Clip;
 import tetris.lib.blocks.Empty;
-import tetris.lib.board.TetrisBoard;
 import tetris.GUI.GraphicTetris;
 import tetris.lib.blocks.Block;
 import static tetris.lib.blocks.soundBoard.loadResourceSound;
@@ -28,7 +25,7 @@ import tetris.lib.pieces.Piece;
  *
  * @author danie
  */
-public final class TetrisGame extends TetrisBoard implements Serializable {
+public  class TetrisGame extends TetrisBoard implements Serializable {
 
     /*Timer timer;
     GraphicTetris gt;
