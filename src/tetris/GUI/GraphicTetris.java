@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.UIManager;
@@ -647,7 +648,10 @@ public void setLabelHold(){
         // TODO add your handling code here:
          try {
             // TODO add your handling code here:
-           tetrisGame1.save(filename,filename2,filenameP);
+            
+            JFileChooser j = new JFileChooser();
+            j.showSaveDialog(null);
+           tetrisGame1.save(j.getSelectedFile().getAbsolutePath());
         } catch (Exception ex) {
             System.out.println(ex);        }
     }//GEN-LAST:event_guardarJogoBtnActionPerformed
@@ -661,7 +665,9 @@ public void setLabelHold(){
         
         
         try{
-        tetrisGame1 = new TetrisGame(tetrisGame1.loadM(filename),tetrisGame1.loadP(filename2),tetrisGame1.loadSavedP(filenameP));
+            JFileChooser j = new JFileChooser();
+            j.showSaveDialog(null);
+        tetrisGame1 = new TetrisGame(tetrisGame1.load(j.getSelectedFile().getAbsolutePath()));
         tetrisGame1.setGt(this);
         
         } catch(Exception e){System.out.println(e);}
