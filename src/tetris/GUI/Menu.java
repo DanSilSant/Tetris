@@ -69,7 +69,7 @@ public class Menu extends javax.swing.JFrame {
         });
 
         BtnAbout.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
-        BtnAbout.setText("Acerca de ...");
+        BtnAbout.setText("Acerca de");
         BtnAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAboutActionPerformed(evt);
