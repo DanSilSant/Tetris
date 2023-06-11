@@ -13,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.UIManager;
@@ -657,8 +658,11 @@ public class GraphicTetris extends javax.swing.JFrame {
     private void guardarJogoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarJogoBtnActionPerformed
         // TODO add your handling code here:
         try {
+            tetrisGame1.stopGame();
             // TODO add your handling code here:
-            tetrisGame1.save(filename, filename2, filenameP);
+            JFileChooser j = new JFileChooser();
+            j.showSaveDialog(null);
+            tetrisGame1.save(j.getSelectedFile().getAbsolutePath());
         } catch (Exception ex) {
             System.out.println(ex);
         }
