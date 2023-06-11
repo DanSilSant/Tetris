@@ -15,10 +15,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.TimerTask;
 import java.util.Timer;
+import javax.sound.sampled.Clip;
 import tetris.lib.blocks.Empty;
 import tetris.lib.board.TetrisBoard;
 import tetris.GUI.GraphicTetris;
 import tetris.lib.blocks.Block;
+import static tetris.lib.blocks.soundBoard.loadResourceSound;
 import tetris.lib.pieces.Piece;
 
 /**
@@ -41,6 +43,10 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     protected int delay;
 
     protected int pontos;
+    
+    protected ArrayList<String> sounds;
+    
+    protected Clip sound;
 
     public TetrisGame() {
         this(20, 10, 350);   
@@ -50,6 +56,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         this.board = new TetrisBoard(lines, columns);
         this.timer = new Timer();
         startGame(delay);
+        play(9);
 
     }
     
@@ -64,6 +71,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         }
         timer = new Timer();
         startGame(350);
+        play(9);
     }
 
    	public void save(String Matrix, String Piece, String SavedP) throws IOException {
@@ -139,13 +147,12 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     }
     
     private class MoveGame extends TimerTask {
-
+        
+            
         @Override
         public void run() {
             try{
             gt.showP();
-            
-            
             gt.showH();
             gt.setLabelHold();
             }catch(Exception e){}
@@ -179,6 +186,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             }
         }
         pontos++;
+        if (pontos%10==0) {play(2);}else{play(1);}
         gt.text("Pontuação: " + pontos);
         return true;
 
@@ -242,7 +250,25 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     }
     
     
-    
+    public void play(int i){
+        sounds = new ArrayList<String>();
+        try{
+            sounds.add("tetris/sounds/stfo.wav");
+            sounds.add("tetris/sounds/clear.wav");
+            sounds.add("tetris/sounds/tetris-success.wav");
+            sounds.add("tetris/sounds/stetris.wav");
+            sounds.add("tetris/sounds/stfo.wav");
+            sounds.add("tetris/sounds/stetris.wav");
+            sounds.add("tetris/sounds/stfo.wav");
+            sounds.add("tetris/sounds/stetris.wav");
+            sounds.add("tetris/sounds/tfs-krillin-and-tetris.wav");
+            sounds.add("tetris/sounds/tetrisST.wav");
+            
+            sound = loadResourceSound(sounds.get(i));
+            if(!sound.isRunning())
+            sound.start();           
+        }catch(Exception e){}
+    }
 
     
 }

@@ -17,13 +17,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import tetris.lib.blocks.soundBoard;
+import tetris.lib.board.TetrisGame;
 
 /**
  *
  * @author danie
  */
 public class Menu extends javax.swing.JFrame {
-   ArrayList<String> sounds = new ArrayList<String>();
+   
     /**
      * Creates new form Menu
      */
@@ -31,9 +32,9 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         try{
             Clip sound = soundBoard.loadResourceSound("tetris/sounds/stfo.wav");
-        }catch(Exception e){
-            
-        }
+            sound.start();
+        }catch(Exception e){}
+        
     }
     
 
@@ -196,20 +197,7 @@ public class Menu extends javax.swing.JFrame {
     }
     
     
-    public void play(){
-        try{
-        sounds.add("tetris/sounds/stfo.wav");
-        sounds.add("tetris/sounds/stetris.wav");
-        for (int i = 0; i < sounds.size(); i++) {
-            Clip sound = soundBoard.loadResourceSound(sounds.get(i));
-            sound.start();
-            while(sound.getMicrosecondLength() != sound.getMicrosecondPosition())
-{
-}
-            
-        }
-        }catch(Exception e){}
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAbout;

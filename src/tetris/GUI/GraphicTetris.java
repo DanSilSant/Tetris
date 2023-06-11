@@ -400,6 +400,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateGameActionPerformed
 
     public void gameOver(){
+        tetrisGame1.play(8);
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
         this.dispose();
         new Menu().setVisible(true);
