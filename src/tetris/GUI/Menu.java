@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import tetris.lib.blocks.soundBoard;
 
 /**
  *
@@ -28,6 +29,11 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        try{
+            Clip sound = soundBoard.loadResourceSound("tetris/sounds/stfo.wav");
+        }catch(Exception e){
+            
+        }
     }
     
 
