@@ -707,6 +707,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         try{
             JFileChooser j = new JFileChooser();
             j.showSaveDialog(null);
+            System.out.println(tetrisGame1.load(j.getSelectedFile().getAbsolutePath()).getDelay());
         tetrisGame1 = new TetrisGame(tetrisGame1.load(j.getSelectedFile().getAbsolutePath()));
         tetrisGame1.setGt(this);
         

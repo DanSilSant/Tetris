@@ -52,6 +52,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     public TetrisGame() {
         this(20, 10, 350);   
     }
+    
     public TetrisGame(TetrisGame t){
             this(t.matrix,t.arrayP,t.hold,t.pontos,t.delay);
             this.gt=t.gt;
@@ -60,31 +61,32 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     public TetrisGame(int lines, int columns, int delay) {
         this.board = new TetrisBoard(lines, columns);
         this.timer = new Timer();
-        startGame(delay);
+        this.delay = delay;
+        startGame(this.delay);
         //play(9);
 
     }
     
-    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP,int pontos,int delay) {
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP,int pontos,int SavedDelay) {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
         this.pontos=pontos;
         this.arrayP=arrayP;
-        this.delay=delay;
+        this.delay=SavedDelay;
         timer = new Timer();
-        startGame(350);
+        startGame(this.delay);
         play(9);
     }
     
 
 
-    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold,int pontos,int delay) {
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold,int pontos,int SavedDelay) {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
         this.arrayP=arrayP;
-       this.pontos=pontos;
+        this.pontos=pontos;
         this.hold=hold;
-        this.delay=delay;
+        this.delay=SavedDelay;
         
         timer = new Timer();
         startGame(this.delay);
@@ -119,7 +121,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
      public void save(String fileName) throws Exception {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
         out.writeObject(this.getClone());
-        out.close();
+        out.close(); 
     }
     
     
@@ -149,23 +151,14 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         }
     }
 
-    public static ArrayList<Piece> loadP(String piece) throws IOException, ClassNotFoundException {
-        try ( ObjectInputStream in = new ObjectInputStream(
-                new FileInputStream(piece))) {
-            return (ArrayList<Piece>) in.readObject();
-        }
-    }
-
-    public static Piece loadSavedP(String savedP) throws IOException, ClassNotFoundException {
-        try ( ObjectInputStream in = new ObjectInputStream(
-                new FileInputStream(savedP))) {
-            return (Piece) in.readObject();
-        }
-    }
 
     public void startGame(int delay) {
         
         timer.schedule(new MoveGame(), 1000, delay);
+    }
+    
+    public int getDelay(){
+        return this.delay;
     }
 
     public void newGame(int lines, int cols) {
