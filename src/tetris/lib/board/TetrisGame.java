@@ -59,9 +59,11 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
         this.arrayP=arrayP;
-        this.hold=hold;
+        if(!hold.equals(null)){
+            this.hold=hold;
+        }
         timer = new Timer();
-        startGame(1000);
+        startGame(350);
     }
 
    	public void save(String Matrix, String Piece, String SavedP) throws IOException {
@@ -140,9 +142,12 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
         @Override
         public void run() {
-            gt.showP();
             try{
+            gt.showP();
+            
+            
             gt.showH();
+            gt.setLabelHold();
             }catch(Exception e){}
             if (isGameOver()) {
                 gt.gameOver();
