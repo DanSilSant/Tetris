@@ -31,7 +31,7 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         try{
-            Clip sound = soundBoard.loadResourceSound("tetris/sounds/stfo.wav");
+            Clip sound = soundBoard.loadResourceSound("tetris/sounds/stetris.wav");
             //sound.start();
         }catch(Exception e){}
         

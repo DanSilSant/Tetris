@@ -63,7 +63,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         this.timer = new Timer();
         this.delay = delay;
         startGame(this.delay);
-        //play(9);
+        play(2);
 
     }
     
@@ -75,7 +75,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         this.delay=SavedDelay;
         timer = new Timer();
         startGame(this.delay);
-        play(9);
+        play(2);
     }
     
 
@@ -90,7 +90,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         
         timer = new Timer();
         startGame(this.delay);
-        //play(9);
+        play(2);
     }
 
    	/*public void save(String Matrix, String Piece, String SavedP) throws IOException {
@@ -229,7 +229,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             }
         }
         pontos++;
-        if (pontos%10==0) {play(2);}else{play(1);}
+        if (pontos%10==0) {play(3);}else{play(0);}
         gt.text("Pontuação: " + pontos);
         return true;
 
@@ -297,26 +297,22 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     
     public void play(int i){
         sounds = new ArrayList<String>();
-      /*  try{
-            sounds.add("tetris/sounds/stfo.wav");
+        try{
             sounds.add("tetris/sounds/clear.wav");
-            sounds.add("tetris/sounds/tetris-success.wav");
             sounds.add("tetris/sounds/stetris.wav");
-            sounds.add("tetris/sounds/stfo.wav");
-            sounds.add("tetris/sounds/stetris.wav");
-            sounds.add("tetris/sounds/stfo.wav");
-            sounds.add("tetris/sounds/stetris.wav");
+            sounds.add("tetris/sounds/tetris-beatbox.wav");
+            sounds.add("tetris/sounds/tetris-success.wav");           
             sounds.add("tetris/sounds/tfs-krillin-and-tetris.wav");
-            sounds.add("tetris/sounds/tetrisST.wav");
+            
             
             sound = loadResourceSound(sounds.get(i));
             if(!sound.isRunning())
             sound.start();           
-        }catch(Exception e){}*/
+        }catch(Exception e){}
     }
     
     public void stopSound(){
-        //sound.stop();
+        sound.stop();
     }
 
     
