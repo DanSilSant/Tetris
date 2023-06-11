@@ -79,6 +79,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             out.writeObject(p);
         }
         Piece e = hold.getClone();
+        
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(SavedP));) {
             out.writeObject(e);
@@ -140,6 +141,9 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         @Override
         public void run() {
             gt.showP();
+            try{
+            gt.showH();
+            }catch(Exception e){}
             if (isGameOver()) {
                 gt.gameOver();
                 stopGame();
@@ -213,6 +217,10 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         deleteFullLines();
         
         
+    }
+    
+    public Piece getHold(){
+        return this.hold;
     }
 
     public void setPiece(Piece piece) {
