@@ -591,13 +591,13 @@ public class GraphicTetris extends javax.swing.JFrame {
             this.repaint();
         }
         if (evt.getKeyCode() == 81) {
-            System.out.println(tetrisGame1.getTrocar());
+            
             tetrisGame1.savePiece();
             this.revalidate();
             this.repaint();
             showH();
             setLabelHold(Color.GREEN);
-            System.out.println("a");
+            
         }
         //pausa
         if (evt.getKeyCode() == 80 || evt.getKeyCode() == 27) {
@@ -678,7 +678,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         try{
             JFileChooser j = new JFileChooser();
             j.showSaveDialog(null);
-            System.out.println(tetrisGame1.load(j.getSelectedFile().getAbsolutePath()).getDelay());
+            
         tetrisGame1 = new TetrisGame(tetrisGame1.load(j.getSelectedFile().getAbsolutePath()));
         tetrisGame1.setGt(this);
         
