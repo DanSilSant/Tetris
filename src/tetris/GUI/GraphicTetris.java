@@ -12,6 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
+import javax.swing.UIManager;
+import tetris.lib.blocks.BlockMatrix;
 import tetris.lib.board.TetrisBoard;
 import tetris.lib.board.TetrisGame;
 import tetris.lib.pieces.Piece;
@@ -32,7 +34,6 @@ public class GraphicTetris extends javax.swing.JFrame {
         
         initComponents();
        
-        
 
     }
    
@@ -403,6 +404,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetrisGame1.stopSound();
         tetrisGame1.play(8);
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
+        tetrisGame1.stopSound();
         this.dispose();
         new Menu().setVisible(true);
     }
@@ -454,7 +456,6 @@ public void showP(){
         revalidate();
         repaint();
     }catch(Exception ex){
-        System.out.println(ex);
     } 
        
 }
@@ -490,7 +491,6 @@ public void showH(){
                 .addComponent(p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }catch(Exception e){
-        System.out.println(e);
     }
         revalidate();
         repaint();
@@ -624,7 +624,23 @@ public void setLabelHold(){
             tetrisGame1.savePiece();
             this.revalidate();
             this.repaint();
+            showH();
+            setLabelHold();
+                 System.out.println("a");
         }
+             
+             if(evt.getKeyCode()==80 || evt.getKeyCode()==27 ){
+                tetrisGame1.stopGame();
+                UIManager.put("OptionPane.yesButtonText", "Continuar");
+                UIManager.put("OptionPane.noButtonText", "Novo Jogo");
+                String[] buttons = { "Novo Jogo", "Continuar"}; 
+                int returnValue = JOptionPane.showOptionDialog(null, "O que fazer?", "Pause Menu",
+        JOptionPane.DEFAULT_OPTION, 0, null, buttons, buttons[0]);
+                if (returnValue == 1)
+                tetrisGame1.unpauseGame(350);
+                this.revalidate();
+        this.repaint();
+            }
     }//GEN-LAST:event_formKeyPressed
 
     private void guardarJogoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarJogoBtnActionPerformed
@@ -677,7 +693,8 @@ public void setLabelHold(){
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         
-        
+        showH();
+        setLabelHold();
         revalidate();
         repaint();
         requestFocus();

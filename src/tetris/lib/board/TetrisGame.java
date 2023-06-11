@@ -135,6 +135,12 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         timer.cancel();
         //.........
     }
+    
+    public void unpauseGame(int delay) {
+        timer = new Timer();
+        timer.schedule(new MoveGame(), 1000, delay);
+        //.........
+    }
 
     public boolean isGameOver() {
         return current.getLinha() == 0 //esta no top
@@ -152,9 +158,8 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         @Override
         public void run() {
             try{
-            gt.showP();
-            gt.showH();
-            gt.setLabelHold();
+            gt.showP();          
+            
             }catch(Exception e){}
             if (isGameOver()) {
                 gt.gameOver();
