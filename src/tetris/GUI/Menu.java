@@ -49,7 +49,7 @@ public class Menu extends javax.swing.JFrame {
         setTitle("Text Tetris");
 
         LblTetrisVer.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
-        LblTetrisVer.setText("Tetris ver 0.2");
+        LblTetrisVer.setText("Tetris ver 500.10");
 
         BtnRules.setFont(new java.awt.Font("Futura", 0, 18)); // NOI18N
         BtnRules.setText("Regras do jogo");
