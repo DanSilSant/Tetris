@@ -23,7 +23,7 @@ import tetris.lib.pieces.PieceZ;
  *
  * @author danie
  */
-public class TetrisBoard extends BlockMatrix {
+public  class TetrisBoard extends BlockMatrix {
 
     protected Piece current;
     
@@ -50,25 +50,27 @@ public class TetrisBoard extends BlockMatrix {
                 sizeX * current.getColumns(),
                 sizeY * current.getLines());
     }
-
+//construtor por defeito
     public TetrisBoard() {
         this(20, 10);
     }
-
-    public TetrisBoard(Block[][] mat, Piece current) {
+//construtor que recebe matriz de blocos 
+    public TetrisBoard(Block[][] mat,Piece current) {
         super(mat);
                
     }
-
+//construtor cópia
     public TetrisBoard(TetrisBoard board) {
-        this(board.matrix, board.current);
+        this(board.matrix,board.current);
     }
-
+    
+//gera novo tabuleiro dado linhas e colunas,e gera novas peças
     public TetrisBoard(int lines, int cols) {
         resize(lines,cols);
         generateArrayPiece();
     }
-    
+//cria nova matriz 
+    @Override
     public void resize(int lines,int cols){
      //preencher a matriz com blocos vazios
         this.matrix = new Block[lines][cols];
@@ -80,7 +82,7 @@ public class TetrisBoard extends BlockMatrix {
         
         
     }
-
+//gera nova peça aleatoriamente
     public void generateRandomPiece() {
         //gerador de numeros aleatótios
         Random rnd = new Random();
@@ -104,7 +106,7 @@ public class TetrisBoard extends BlockMatrix {
         repaint();
 
     }
-    
+    //gera array de peças
         public ArrayList<Piece> generateArrayPiece(){
         arrayP = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
@@ -114,7 +116,7 @@ public class TetrisBoard extends BlockMatrix {
         }
         return arrayP;           
     }
-    
+    //remove peça
     public void removePiece(){
         arrayP.remove(0);
         generateRandomPiece();
@@ -127,7 +129,7 @@ public class TetrisBoard extends BlockMatrix {
     }
     
     
-
+//desenha peça no tabuleiro
 public void freezePiece() {
         for (int l = 0; l < current.getLines(); l++) {
             for (int c = 0; c < current.getColumns(); c++) {
@@ -154,7 +156,7 @@ public void freezePiece() {
         }
         return txt;
     }
-
+//Verifica se o movimento é legal
     public boolean canMovePiece(int dy, int dx) {
         int newX = current.getColuna() + dx;
         int newY = current.getLinha() + dy;
@@ -190,7 +192,7 @@ public void freezePiece() {
         //no tabuleiro
         return true;
     }
-
+//Verifica se a peça pode ser rodada
     public boolean canRotatePiece() {
         Piece clone = current.getClone();
         //rotate clone
@@ -214,7 +216,7 @@ public void freezePiece() {
         return true;
 
     }
-
+//Move peça para esquerda
     public void moveLeft() {
         if (canMovePiece(0, -1)) {
             current.moveLeft();
@@ -223,7 +225,7 @@ public void freezePiece() {
             
         }
     }
-
+//Move peça para direita
     public void moveRight() {
         if (canMovePiece(0, 1)) {
             current.moveRight();
@@ -232,14 +234,14 @@ public void freezePiece() {
             
         }
     }
-
+//Move peça para baixo
     public void moveDown() {
         if (canMovePiece(1, 0)) {
             current.moveDown();
             this.revalidate();
             this.repaint();
             
-            
+       
             
         } else {
             //caso não seja possível deslocar para baixo
@@ -250,7 +252,7 @@ public void freezePiece() {
             repaint();
         }
     }
-
+//Faz cair peça
     public void fallDown() {
         while (canMovePiece(1, 0)) {
             current.moveDown();
@@ -264,7 +266,8 @@ public void freezePiece() {
         removePiece();
         repaint();
     }
-
+//roda peça
+    @Override
     public void rotate() {
         if (canRotatePiece()) {
             current.rotate();
@@ -272,7 +275,7 @@ public void freezePiece() {
         }
 
     }
-    
+//Guarda peça(mete em hold)
     public void savePiece() {
 
         if (hold == null) {
@@ -303,7 +306,7 @@ public void freezePiece() {
     public void setCurrent(Piece current) {
         this.current = current;
     }
-    
+    //devolve próxima peça
     public Piece nextP(){
         return arrayP.get(1);
     }

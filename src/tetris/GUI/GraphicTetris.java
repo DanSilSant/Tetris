@@ -28,9 +28,9 @@ import tetris.lib.pieces.Piece;
  * @author danie
  */
 public class GraphicTetris extends javax.swing.JFrame {
-
+//construtor por defeito
     public GraphicTetris() {
-
+        //inicia componentes gráficos
         initComponents();
 
     }
@@ -373,15 +373,14 @@ public class GraphicTetris extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Cria jogo
     private void btnCreateGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateGameActionPerformed
-        // TODO add your handling code here:
+        
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
-        //construir o jogo
         tetrisGame1.stopGame();
         dispose();
         new GraphicTetris().setVisible(true);
-        //tetrisGame1.stopSound();
         tetrisGame1 = new TetrisGame(lines, columns, 350);
         tetrisGame1.setGt(this);
         showH();
@@ -392,7 +391,7 @@ public class GraphicTetris extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_btnCreateGameActionPerformed
-
+//Para jogo
     public void gameOver() {
         tetrisGame1.stopSound();
         tetrisGame1.play(4);
@@ -406,7 +405,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         jLabel1.setText(message);
     }
 
-
+//seta para direita
     private void btnRightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRightActionPerformed
         // TODO add your handling code here:
         tetrisGame1.moveRight();
@@ -414,6 +413,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.repaint();
         this.requestFocus();
     }//GEN-LAST:event_btnRightActionPerformed
+    //Mostra próxima peça na janela Jpanel1
     public void showP() {
         try {
             jPanel1.removeAll();
@@ -452,7 +452,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         }
 
     }
-
+//Mostra peça em hold na janela jPanel3
     public void showH() {
         jPanel3.removeAll();
         p = tetrisGame1.getHold();
@@ -489,16 +489,17 @@ public class GraphicTetris extends javax.swing.JFrame {
         repaint();
         setLabelHold(Color.GREEN);
     }
+    //Define texto da label que mostra os pontos
     public void setLabelPontos(){
         jLabel1.setText("Pontuação : " + tetrisGame1.getPontos());
         
     }
     
-    
+    //Define cor do texto da label hold
     public void setLabelHold(Color color) {
         jLabel3.setForeground(color);
     }
-    
+    //Seta para a esquerda
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
         // TODO add your handling code here:
         tetrisGame1.moveLeft();
@@ -506,7 +507,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.repaint();
         this.requestFocus();
     }//GEN-LAST:event_btnLeftActionPerformed
-
+//Seta para cima/rodar
     private void BtnRotateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRotateActionPerformed
         // TODO add your handling code here:
         tetrisGame1.rotate();
@@ -514,7 +515,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.repaint();
         this.requestFocus();
     }//GEN-LAST:event_BtnRotateActionPerformed
-
+//Seta para baixo
     private void BtnDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDownActionPerformed
         // TODO add your handling code here:
         tetrisGame1.moveDown();
@@ -522,7 +523,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.repaint();
         this.requestFocus();
     }//GEN-LAST:event_BtnDownActionPerformed
-
+//Seta para cair peça
     private void btnFallDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFallDownActionPerformed
         // TODO add your handling code here:
         tetrisGame1.fallDown();
@@ -531,7 +532,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.requestFocus();
 
     }//GEN-LAST:event_btnFallDownActionPerformed
-
+//voltar ao menu
     private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
         tetrisGame1.stopGame();
         this.dispose();
@@ -559,35 +560,9 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFallDownKeyPressed
 
     private void btnCreateGameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCreateGameKeyPressed
-        // TODO add your handling code here:
-
-        //jogar com o teclado (não está a funcionar
-        /*int key = evt.getKeyCode();  // Keyboard code for the pressed key.
-
-        if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) {
-            tetris.rotate();
-
-        }if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) {
-            tetris.moveLeft();
-
-        }if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) {
-            tetris.moveDown();
-
-        }if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) {
-            tetris.moveRight();
-
-        }if (key == KeyEvent.VK_SPACE) {
-            tetris.fallDown();
-
-        }if (key == KeyEvent.VK_ENTER) {
-            int lines = (Integer) SpnLinha.getValue();
-            int columns = (Integer) SpnColuna.getValue();
-            //construir o jogo
-            this.tetris = new TetrisBoard(lines, columns);
-
-        }*/
+       
     }//GEN-LAST:event_btnCreateGameKeyPressed
-
+//Listener para teclado
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
 
         if (evt.getKeyCode() == 87 || evt.getKeyCode() == 38) {
@@ -624,7 +599,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             setLabelHold(Color.GREEN);
             System.out.println("a");
         }
-
+        //pausa
         if (evt.getKeyCode() == 80 || evt.getKeyCode() == 27) {
             tetrisGame1.stopGame();
             UIManager.put("OptionPane.yesButtonText", "Continuar");
@@ -657,12 +632,12 @@ public class GraphicTetris extends javax.swing.JFrame {
             this.repaint();
         }
     }//GEN-LAST:event_formKeyPressed
-
+//Guardar jogo
     private void guardarJogoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarJogoBtnActionPerformed
-        // TODO add your handling code here:
+       
         try {
             tetrisGame1.stopGame();
-            // TODO add your handling code here:
+            
             JFileChooser j = new JFileChooser();
             j.showSaveDialog(null);
             tetrisGame1.save(j.getSelectedFile().getAbsolutePath() + ".tetris");
@@ -691,7 +666,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_guardarJogoBtnActionPerformed
-
+//Carregar jogo
     private void loadBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadBtnActionPerformed
         // TODO add your handling code here: 
 
@@ -798,10 +773,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             }
         });
     }
-    private int novoJogo = 0;
-    private String filename = "teste.obj";
-    private String filenameP = "testeP.obj";
-    private String filename2 = "teste2.obj";
+    
 
     private Piece p;
     // Variables declaration - do not modify//GEN-BEGIN:variables

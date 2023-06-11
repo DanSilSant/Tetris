@@ -25,7 +25,7 @@ import tetris.lib.pieces.Piece;
  *
  * @author danie
  */
-public final class TetrisGame extends TetrisBoard implements Serializable {
+public  class TetrisGame extends TetrisBoard implements Serializable {
 
     protected TetrisBoard board;
 
