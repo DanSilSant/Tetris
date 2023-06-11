@@ -29,15 +29,70 @@ public final class TetrisGame extends TetrisBoard {
 
  
 
+<<<<<<< Updated upstream
     public TetrisGame(GraphicTetris gt) {
         super();
         timer = new Timer();
         this.gt=gt;
+=======
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold) {
+        super(bm, arrayP.get(0));
+        current=arrayP.get(0);
+        this.arrayP=arrayP;
+        this.hold=hold;
+        timer = new Timer();
+>>>>>>> Stashed changes
         startGame(1000);
         
     }
 
+<<<<<<< Updated upstream
  
+=======
+    public void save(String Matrix, String Piece, String SavedP) throws IOException {
+        System.out.println("teste");
+        try ( ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(Matrix));) {
+            out.writeObject(this.matrix);
+        }
+        ArrayList<Piece> p = new ArrayList();
+        for(Piece a : this.arrayP){
+            p.add(a.getClone());
+        }
+        try ( ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(Piece));) {
+            out.writeObject(p);
+        }
+        try ( ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(SavedP));) {
+            out.writeObject(board.hold);
+        }
+
+    }
+
+    public static Block[][] loadM(String matrix) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(matrix))) {
+            return (Block[][]) in.readObject();
+        }
+    }
+
+    public static ArrayList<Piece> loadP(String piece) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(piece))) {
+            return (ArrayList<Piece>) in.readObject();
+        }
+    }
+
+    public static Piece loadSavedP(String savedP) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(savedP))) {
+            return (Piece) in.readObject();
+        }
+    }
+    
+    
+>>>>>>> Stashed changes
 
     public void startGame(int delay) {
         timer.schedule(new MoveGame(), 0 , delay);

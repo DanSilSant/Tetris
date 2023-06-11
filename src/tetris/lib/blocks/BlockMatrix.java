@@ -5,13 +5,14 @@
 package tetris.lib.blocks;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 import javax.swing.JPanel;
 
 /**
  *
  * @author danie
  */
-public class BlockMatrix extends JPanel implements Drawable {
+public class BlockMatrix extends JPanel implements Drawable,Serializable {
 
     protected Block[][] matrix;
 

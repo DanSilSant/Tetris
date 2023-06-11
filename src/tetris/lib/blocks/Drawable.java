@@ -10,7 +10,7 @@ import java.awt.Graphics;
  *
  * @author danie
  */
-public interface Drawable {
+public interface Drawable{
 
     public void draw(Graphics gr, int px, int py, int width, int height);
    

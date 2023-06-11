@@ -6,16 +6,17 @@ package tetris.lib.blocks;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import javax.swing.JComponent;
 
 /**
  *
  * @author danie
  */
-public class Block extends JComponent implements Drawable {
+public class Block extends JComponent implements Drawable,Serializable {
 
-    private char txt;
-    private Color myColor;
+     private char txt;
+     private Color myColor;
 
     @Override
     public void paintComponent(Graphics gr){

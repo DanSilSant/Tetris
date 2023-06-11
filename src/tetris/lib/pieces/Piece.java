@@ -4,6 +4,7 @@
  */
 package tetris.lib.pieces;
 
+import java.io.Serializable;
 import tetris.lib.blocks.Block;
 import tetris.lib.blocks.BlockMatrix;
 
@@ -11,7 +12,7 @@ import tetris.lib.blocks.BlockMatrix;
  *
  * @author danie
  */
-public class Piece extends BlockMatrix {
+public class Piece extends BlockMatrix implements Serializable {
 
     private int linha;
     private int coluna;
