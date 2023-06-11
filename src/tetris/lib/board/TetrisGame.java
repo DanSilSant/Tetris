@@ -31,6 +31,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     Timer timer;
     protected GraphicTetris gt;
+<<<<<<< Updated upstream
     int count=0;
     Piece piece;
     int trocar;
@@ -92,6 +93,27 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     }
      
 
+=======
+
+    protected Timer timer;
+
+    protected int delay;
+
+    protected int pontos;
+
+    public TetrisGame() {
+        this(20, 10, 1000);   
+    }
+
+    public TetrisGame(int lines, int columns, int delay) {
+        this.board = new TetrisBoard(lines, columns);
+        this.timer = new Timer();
+        startGame(delay);
+
+    }
+    
+
+>>>>>>> Stashed changes
     public void startGame(int delay) {
         timer.schedule(new MoveGame(), 0 , delay);
     }
@@ -244,10 +266,13 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     }
 
 
+<<<<<<< Updated upstream
     public void setPiece(Piece piece) {
         this.piece = piece;
     }
     
+=======
+>>>>>>> Stashed changes
 
     public int getTrocar() {
         return trocar;

@@ -354,6 +354,23 @@ public class GraphicTetris extends javax.swing.JFrame {
         this.repaint();
         this.requestFocus();
     }//GEN-LAST:event_btnRightActionPerformed
+<<<<<<< Updated upstream
+=======
+public void showP(){
+    try{
+    jPanel1.removeAll();
+    Piece p=tetrisGame1.nextP();
+            javax.swing.GroupLayout pieceI1Layout = new javax.swing.GroupLayout(p);
+        p.setLayout(pieceI1Layout);
+        pieceI1Layout.setHorizontalGroup(
+            pieceI1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        pieceI1Layout.setVerticalGroup(
+            pieceI1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+>>>>>>> Stashed changes
 
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
         // TODO add your handling code here:
@@ -481,6 +498,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void guardarJogoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarJogoBtnActionPerformed
+<<<<<<< Updated upstream
         // TODO add your handling code here:
 
         try {
@@ -498,6 +516,18 @@ public class GraphicTetris extends javax.swing.JFrame {
 
     }//GEN-LAST:event_guardarJogoBtnActionPerformed
 
+=======
+
+    }//GEN-LAST:event_guardarJogoBtnActionPerformed
+
+    private void carregarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carregarBtnActionPerformed
+
+    }//GEN-LAST:event_carregarBtnActionPerformed
+
+
+
+    
+>>>>>>> Stashed changes
     /**
      * @param args the command line arguments
      */
@@ -548,12 +578,22 @@ public class GraphicTetris extends javax.swing.JFrame {
             }
         });
     }
+<<<<<<< Updated upstream
     
    
     private int novoJogo = 0;
     private String filename = "teste.obj";
     private String filenameP = "testeP.obj";
     private String filenameSP = "testeSP.obj";
+=======
+    private int novoJogo=0;
+    private String filenameM = "teste.obj";
+    private String filenameP0 = "testeP0.obj";
+    private String filenameP1 = "testeP1.obj";
+    private String filenameP2 = "testeP2.obj";
+    private String filenameP3 = "testeP3.obj";
+    private String filenameH = "testeH.obj";
+>>>>>>> Stashed changes
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnDown;
     private javax.swing.JButton BtnMenu;

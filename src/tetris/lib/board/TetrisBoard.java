@@ -22,10 +22,22 @@ import tetris.lib.pieces.PieceZ;
  *
  * @author danie
  */
+<<<<<<< Updated upstream
 public class TetrisBoard extends BlockMatrix {
     
 
     protected Piece current;
+=======
+public class TetrisBoard extends BlockMatrix implements Serializable {
+
+    protected Piece current;
+
+    protected ArrayList<Piece> arrayP;
+
+    protected Piece hold;
+
+    protected int trocar;
+>>>>>>> Stashed changes
 
     @Override
     public void paintComponent(Graphics g) {
@@ -49,7 +61,11 @@ public class TetrisBoard extends BlockMatrix {
 
     public TetrisBoard(Block[][] mat, Piece current) {
         super(mat);
+<<<<<<< Updated upstream
         this.current = new Piece(current);
+=======
+
+>>>>>>> Stashed changes
     }
 
     public TetrisBoard(TetrisBoard board) {
@@ -57,20 +73,29 @@ public class TetrisBoard extends BlockMatrix {
     }
 
     public TetrisBoard(int lines, int cols) {
+<<<<<<< Updated upstream
         resize(lines,cols);
+=======
+        resize(lines, cols);
+        generateArrayPiece();
+>>>>>>> Stashed changes
     }
-    
-    public void resize(int lines,int cols){
-     //preencher a matriz com blocos vazios
+
+    public void resize(int lines, int cols) {
+        //preencher a matriz com blocos vazios
         this.matrix = new Block[lines][cols];
         for (int l = 0; l < lines; l++) {
             for (int c = 0; c < cols; c++) {
                 matrix[l][c] = new Empty();
             }
         }
+<<<<<<< Updated upstream
         
         generateRandomPiece();
         
+=======
+
+>>>>>>> Stashed changes
     }
 
     public void generateRandomPiece() {
@@ -96,6 +121,29 @@ public class TetrisBoard extends BlockMatrix {
         repaint();
 
     }
+<<<<<<< Updated upstream
+=======
+
+    public ArrayList<Piece> generateArrayPiece() {
+        arrayP = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            generateRandomPiece();
+            arrayP.add(this.current);
+            current = arrayP.get(0);
+        }
+        return arrayP;
+    }
+
+    public void removePiece() {
+        arrayP.remove(0);
+        generateRandomPiece();
+        arrayP.add(current);
+        current = arrayP.get(0);
+        revalidate();
+        for (int i = 0; i < 4; i++) {
+        }
+    }
+>>>>>>> Stashed changes
 
     public void freezePiece() {
         for (int l = 0; l < current.getLines(); l++) {
@@ -106,6 +154,10 @@ public class TetrisBoard extends BlockMatrix {
                 }
             }
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         repaint();
     }
 
@@ -188,7 +240,7 @@ public class TetrisBoard extends BlockMatrix {
             current.moveLeft();
             revalidate();
             repaint();
-            
+
         }
     }
 
@@ -197,7 +249,7 @@ public class TetrisBoard extends BlockMatrix {
             current.moveRight();
             revalidate();
             repaint();
-            
+
         }
     }
 
@@ -206,9 +258,7 @@ public class TetrisBoard extends BlockMatrix {
             current.moveDown();
             this.revalidate();
             this.repaint();
-            
-            
-            
+
         } else {
             //caso não seja possível deslocar para baixo
             //congela a peça na matriz e gera a próxima peça
@@ -224,7 +274,7 @@ public class TetrisBoard extends BlockMatrix {
             current.moveDown();
             revalidate();
             repaint();
-            
+
         }
         //quando a peça não se pode deslocar mais para baixo
         //congela a peça na matriz e gera a próxima peça
@@ -240,6 +290,32 @@ public class TetrisBoard extends BlockMatrix {
         }
 
     }
+<<<<<<< Updated upstream
+=======
+
+    public void savePiece() {
+
+        if (hold == null) {
+            hold = current;
+            trocar++;
+            removePiece();
+            revalidate();
+            repaint();
+        } else {
+            if (trocar == 0) {
+                trocar++;
+                Piece aux = current;
+                current = hold;
+                hold = aux;
+                current.setLinha(0);
+                current.setColuna(0);
+                revalidate();
+                repaint();
+            }
+
+        }
+    }
+>>>>>>> Stashed changes
 
     public Piece getCurrent() {
         return current;
@@ -248,5 +324,13 @@ public class TetrisBoard extends BlockMatrix {
     public void setCurrent(Piece current) {
         this.current = current;
     }
+<<<<<<< Updated upstream
+=======
 
+    public Piece nextP() {
+        return arrayP.get(1);
+    }
+>>>>>>> Stashed changes
+
+    
 }

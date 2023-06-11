@@ -4,16 +4,8 @@
  */
 package tetris.GUI;
 
-import java.awt.Frame;
-import java.awt.Image;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+import javax.sound.sampled.Clip;
+import tetris.lib.blocks.Resources;
 
 /**
  *
@@ -21,11 +13,27 @@ import javax.swing.UIManager;
  */
 public class Menu extends javax.swing.JFrame {
    
+    Clip sound;
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
+    try {
+            sound = Resources.loadResourceSound("Tetris/sounds/stfuGoPlayTetris.wav");
+            sound.start();
+        } catch (Exception ex) {
+            
+    }
+    while (sound.isRunning()){
+        
+    }
+    try {
+            sound = Resources.loadResourceSound("Tetris/sounds/huiTetris.wav");
+            sound.start();
+        } catch (Exception ex) {
+            
+    }
     }
     
 
@@ -150,6 +158,7 @@ public class Menu extends javax.swing.JFrame {
         int returnValue = JOptionPane.showOptionDialog(null, "Criar novo jogo?", "Criar novo jogo?",
         JOptionPane.DEFAULT_OPTION, 0, scaledIcon, buttons, buttons[0]);
         this.dispose();
+<<<<<<< Updated upstream
         System.out.println(returnValue);
         try {
             new GraphicTetris(returnValue).setVisible(true);
@@ -158,6 +167,11 @@ public class Menu extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
+=======
+        sound.stop();
+        new GraphicTetris().setVisible(true);
+       
+>>>>>>> Stashed changes
         
     }//GEN-LAST:event_BtnPlayActionPerformed
 
@@ -200,6 +214,8 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAbout;
