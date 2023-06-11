@@ -15,7 +15,7 @@ import tetris.lib.blocks.Empty;
 public class BlockMatrixTest {
 
     public static void main(String[] args) {
-        /*Block bl[][] = {
+        Block bl[][] = {
             {new Block('L'), new Empty()},
             {new Block('L'), new Empty()},
             {new Block('L'), new Block('L')},};
@@ -31,7 +31,7 @@ public class BlockMatrixTest {
         b2.rotate();
         System.out.println("Original b1\n" + b1);
         System.out.println("Rotate b2\n" + b2);
-*/
+
     }
 
 }

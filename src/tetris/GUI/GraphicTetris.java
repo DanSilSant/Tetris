@@ -395,7 +395,7 @@ public class GraphicTetris extends javax.swing.JFrame {
 
     public void gameOver() {
         tetrisGame1.stopSound();
-        //tetrisGame1.play(8);
+        tetrisGame1.play(4);
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
         tetrisGame1.stopSound();
         this.dispose();
