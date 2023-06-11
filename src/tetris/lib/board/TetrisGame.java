@@ -50,7 +50,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     transient protected Clip sound;
 
     public TetrisGame() {
-        this(20, 10, 350);   
+        this(20, 10, 1000);   
     }
     
     public TetrisGame(TetrisGame t){

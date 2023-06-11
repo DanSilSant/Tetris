@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -66,6 +67,7 @@ public class GraphicTetris extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Text Tetris");
+        setResizable(false);
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);
@@ -318,7 +320,7 @@ public class GraphicTetris extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LblLinhas, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                            .addComponent(LblLinhas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(LblColunas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -343,7 +345,7 @@ public class GraphicTetris extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(66, 66, 66)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,7 +391,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetrisGame1 = new TetrisGame(lines, columns, 350);
         tetrisGame1.setGt(this);
         showH();
-        setLabelHold();
+        setLabelHold(Color.RED);
         revalidate();
         repaint();
         requestFocus();
@@ -491,7 +493,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         }
         revalidate();
         repaint();
-
+        setLabelHold(Color.GREEN);
     }
     public void setLabelPontos(){
         jLabel1.setText("Pontuação : " + tetrisGame1.getPontos());
@@ -499,8 +501,8 @@ public class GraphicTetris extends javax.swing.JFrame {
     }
     
     
-    public void setLabelHold() {
-        jLabel3.setForeground(Color.green);
+    public void setLabelHold(Color color) {
+        jLabel3.setForeground(color);
     }
     
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
@@ -625,7 +627,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             this.revalidate();
             this.repaint();
             showH();
-            setLabelHold();
+            setLabelHold(Color.GREEN);
             System.out.println("a");
         }
 
@@ -650,7 +652,7 @@ public class GraphicTetris extends javax.swing.JFrame {
                 tetrisGame1 = new TetrisGame(lines, columns, 350);
                 tetrisGame1.setGt(this);
                 showH();
-                setLabelHold();
+                setLabelHold(Color.RED);
                 revalidate();
                 repaint();
                 requestFocus();
@@ -741,9 +743,17 @@ public class GraphicTetris extends javax.swing.JFrame {
                                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
-        showH();
+        if (!Objects.isNull(tetrisGame1.getHold())){
+            showH();
+        }else{
+            jPanel3.removeAll();
+            jPanel3.revalidate();
+            setLabelHold(Color.RED);
+            
+        }
+        
         setLabelPontos();
-        setLabelHold();
+        
         revalidate();
         repaint();
         requestFocus();
