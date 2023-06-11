@@ -454,6 +454,7 @@ public void showP(){
     }//GEN-LAST:event_btnFallDownActionPerformed
 
     private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
+        tetrisGame1.stopGame();
         this.dispose();
         new Menu().setVisible(true);
     }//GEN-LAST:event_BtnMenuActionPerformed

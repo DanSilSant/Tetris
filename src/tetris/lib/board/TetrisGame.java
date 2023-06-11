@@ -78,9 +78,10 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
                 new FileOutputStream(Piece));) {
             out.writeObject(p);
         }
+        Piece e = hold.getClone();
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(SavedP));) {
-            out.writeObject(board.hold);
+            out.writeObject(e);
         }
 
     }
