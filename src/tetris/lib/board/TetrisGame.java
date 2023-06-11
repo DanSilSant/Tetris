@@ -13,6 +13,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.TimerTask;
 import java.util.Timer;
 import javax.sound.sampled.Clip;
@@ -38,20 +39,23 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     protected GraphicTetris gt;
 
-    protected Timer timer;
+   transient protected Timer timer;
 
     protected int delay;
 
     protected int pontos;
     
-    protected ArrayList<String> sounds;
+   transient protected ArrayList<String> sounds;
     
-    protected Clip sound;
+    transient protected Clip sound;
 
     public TetrisGame() {
         this(20, 10, 350);   
     }
-
+    public TetrisGame(TetrisGame t){
+            this(t.matrix,t.arrayP,t.hold);
+            this.gt=t.gt;
+        }
     public TetrisGame(int lines, int columns, int delay) {
         this.board = new TetrisBoard(lines, columns);
         this.timer = new Timer();
@@ -60,21 +64,31 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     }
     
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP) {
+        super(bm, arrayP.get(0));
+        current=arrayP.get(0);
+        this.arrayP=arrayP;
+       
+        timer = new Timer();
+        startGame(350);
+        play(9);
+    }
+    
 
 
     public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold) {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
         this.arrayP=arrayP;
-        if(!hold.equals(null)){
+       
             this.hold=hold;
-        }
+        
         timer = new Timer();
         startGame(350);
         //play(9);
     }
 
-   	public void save(String Matrix, String Piece, String SavedP) throws IOException {
+   	/*public void save(String Matrix, String Piece, String SavedP) throws IOException {
         System.out.println("teste");
         try ( ObjectOutputStream out = new ObjectOutputStream(
                 new FileOutputStream(Matrix));) {
@@ -94,13 +108,41 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
                 new FileOutputStream(SavedP));) {
             out.writeObject(e);
         }
-
+    /*
+    
+    */
+    
+    
+     public void save(String fileName) throws Exception {
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(fileName));
+        out.writeObject(this.getClone());
+        out.close();
     }
+    
+    
+    
+    
+    public TetrisGame getClone(){
+            matrix=this.matrix;
+            ArrayList<Piece> p = new ArrayList();
+            for(Piece a : this.arrayP){
+                p.add(a.getClone());
+            }
+            if(!Objects.isNull(hold)){ 
+            Piece e = hold.getClone();
+            return new TetrisGame(matrix,p,e);
+            }else{
+                return new TetrisGame(matrix,p);
+            }
+            
 
-    public static Block[][] loadM(String matrix) throws IOException, ClassNotFoundException {
+        }
+   
+
+    public static TetrisGame load(String matrix) throws IOException, ClassNotFoundException {
         try ( ObjectInputStream in = new ObjectInputStream(
                 new FileInputStream(matrix))) {
-            return (Block[][]) in.readObject();
+            return (TetrisGame) in.readObject();
         }
     }
 
@@ -257,7 +299,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     
     public void play(int i){
         sounds = new ArrayList<String>();
-        try{
+      /*  try{
             sounds.add("tetris/sounds/stfo.wav");
             sounds.add("tetris/sounds/clear.wav");
             sounds.add("tetris/sounds/tetris-success.wav");
@@ -272,11 +314,11 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             sound = loadResourceSound(sounds.get(i));
             if(!sound.isRunning())
             sound.start();           
-        }catch(Exception e){}
+        }catch(Exception e){}*/
     }
     
     public void stopSound(){
-        sound.stop();
+        //sound.stop();
     }
 
     

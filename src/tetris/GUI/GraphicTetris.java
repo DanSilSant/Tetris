@@ -670,14 +670,15 @@ public class GraphicTetris extends javax.swing.JFrame {
         tetrisGame1.stopGame();
         tetrisGame1.stopSound();
         jPanel2.removeAll();
-
-        try {
-            tetrisGame1 = new TetrisGame(tetrisGame1.loadM(filename), tetrisGame1.loadP(filename2), tetrisGame1.loadSavedP(filenameP));
-            tetrisGame1.setGt(this);
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        
+        
+        try{
+            JFileChooser j = new JFileChooser();
+            j.showSaveDialog(null);
+        tetrisGame1 = new TetrisGame(tetrisGame1.load(j.getSelectedFile().getAbsolutePath()));
+        tetrisGame1.setGt(this);
+        
+        } catch(Exception e){System.out.println(e);}
         javax.swing.GroupLayout tetrisGame1Layout = new javax.swing.GroupLayout(tetrisGame1);
         tetrisGame1.setLayout(tetrisGame1Layout);
         tetrisGame1Layout.setHorizontalGroup(
