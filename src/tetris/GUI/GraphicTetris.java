@@ -662,7 +662,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             // TODO add your handling code here:
             JFileChooser j = new JFileChooser();
             j.showSaveDialog(null);
-            tetrisGame1.save(j.getSelectedFile().getAbsolutePath());
+            tetrisGame1.save(j.getSelectedFile().getAbsolutePath() + ".tetris");
         } catch (Exception ex) {
             System.out.println(ex);
         }
