@@ -170,8 +170,6 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
                 stopGame();
 
             } else if (canMovePiece(1, 0)) {
-
-                System.out.println("dwadwadw");
                 moveDown();
                 gt.revalidate();
                 gt.repaint();
@@ -269,7 +267,6 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
     //set do trocar
     public void setTrocar(int troca) {
         this.trocar = troca;
-        System.out.println(this.trocar);
     }
 
     //cria o array de strings com o path e reproduz sons

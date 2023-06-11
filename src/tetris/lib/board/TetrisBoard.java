@@ -123,9 +123,6 @@ public  class TetrisBoard extends BlockMatrix {
         arrayP.add(current);
         current = arrayP.get(0);
         revalidate();
-        for (int i = 0; i < 4; i++) {
-                System.out.println("asfasfa" + arrayP.get(i));
-            }
     }
     
     
