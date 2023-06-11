@@ -269,6 +269,10 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             sound.start();           
         }catch(Exception e){}
     }
+    
+    public void stopSound(){
+        sound.stop();
+    }
 
     
 }

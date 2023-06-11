@@ -400,6 +400,7 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateGameActionPerformed
 
     public void gameOver(){
+        tetrisGame1.stopSound();
         tetrisGame1.play(8);
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
         this.dispose();
@@ -639,7 +640,7 @@ public void setLabelHold(){
         // TODO add your handling code here: 
 	
         tetrisGame1.stopGame();
-        
+        tetrisGame1.stopSound();
         jPanel2.removeAll();
         
         
