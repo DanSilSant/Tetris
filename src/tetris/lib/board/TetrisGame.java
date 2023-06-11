@@ -55,6 +55,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     public TetrisGame(TetrisGame t){
             this(t.matrix,t.arrayP,t.hold);
             this.gt=t.gt;
+            this.pontos=t.pontos;
         }
     public TetrisGame(int lines, int columns, int delay) {
         this.board = new TetrisBoard(lines, columns);
