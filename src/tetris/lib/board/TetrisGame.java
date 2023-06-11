@@ -56,7 +56,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         this.board = new TetrisBoard(lines, columns);
         this.timer = new Timer();
         startGame(delay);
-        play(9);
+        //play(9);
 
     }
     
@@ -71,7 +71,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         }
         timer = new Timer();
         startGame(350);
-        play(9);
+        //play(9);
     }
 
    	public void save(String Matrix, String Piece, String SavedP) throws IOException {
