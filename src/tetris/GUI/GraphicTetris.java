@@ -434,8 +434,8 @@ public class GraphicTetris extends javax.swing.JFrame {
                             .addGap(0, 100, Short.MAX_VALUE)
             );
 
-            javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-            jPanel1.setLayout(jPanel1Layout);
+            javax.swing.GroupLayout jPanel1Layout = (javax.swing.GroupLayout) jPanel1.getLayout();
+            
             jPanel1Layout.setHorizontalGroup(
                     jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -472,8 +472,8 @@ public class GraphicTetris extends javax.swing.JFrame {
                             .addGap(0, 100, Short.MAX_VALUE)
             );
 
-            javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-            jPanel3.setLayout(jPanel3Layout);
+            javax.swing.GroupLayout jPanel3Layout = (javax.swing.GroupLayout) jPanel3.getLayout();
+            
             jPanel3Layout.setHorizontalGroup(
                     jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -497,9 +497,12 @@ public class GraphicTetris extends javax.swing.JFrame {
         jLabel1.setText("Pontuação : " + tetrisGame1.getPontos());
         
     }
+    
+    
     public void setLabelHold() {
-        jLabel3.setForeground(Color.black);
+        jLabel3.setForeground(Color.green);
     }
+    
     private void btnLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeftActionPerformed
         // TODO add your handling code here:
         tetrisGame1.moveLeft();

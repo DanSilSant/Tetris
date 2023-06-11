@@ -53,7 +53,7 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
         this(20, 10, 350);   
     }
     public TetrisGame(TetrisGame t){
-            this(t.matrix,t.arrayP,t.hold,t.pontos);
+            this(t.matrix,t.arrayP,t.hold,t.pontos,t.delay);
             this.gt=t.gt;
             
         }
@@ -65,11 +65,12 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
 
     }
     
-    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP,int pontos) {
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP,int pontos,int delay) {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
         this.pontos=pontos;
         this.arrayP=arrayP;
+        this.delay=delay;
         timer = new Timer();
         startGame(350);
         play(9);
@@ -77,15 +78,16 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
     
 
 
-    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold,int pontos) {
+    public TetrisGame(Block[][] bm, ArrayList<Piece> arrayP, Piece hold,int pontos,int delay) {
         super(bm, arrayP.get(0));
         current=arrayP.get(0);
         this.arrayP=arrayP;
        this.pontos=pontos;
         this.hold=hold;
+        this.delay=delay;
         
         timer = new Timer();
-        startGame(350);
+        startGame(this.delay);
         //play(9);
     }
 
@@ -131,9 +133,9 @@ public final class TetrisGame extends TetrisBoard implements Serializable {
             }
             if(!Objects.isNull(hold)){ 
             Piece e = hold.getClone();
-            return new TetrisGame(matrix,p,e,this.pontos);
+            return new TetrisGame(matrix,p,e,this.pontos,this.delay);
             }else{
-                return new TetrisGame(matrix,p,this.pontos);
+                return new TetrisGame(matrix,p,this.pontos,this.delay);
             }
             
 
