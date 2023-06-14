@@ -163,11 +163,11 @@ public class GraphicTetris extends javax.swing.JFrame {
         });
 
         SpnLinha.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
-        SpnLinha.setModel(new javax.swing.SpinnerNumberModel(10, 6, null, 1));
+        SpnLinha.setModel(new javax.swing.SpinnerNumberModel(10, 6, 100, 1));
         SpnLinha.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         SpnColuna.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
-        SpnColuna.setModel(new javax.swing.SpinnerNumberModel(10, 6, null, 1));
+        SpnColuna.setModel(new javax.swing.SpinnerNumberModel(10, 6, 100, 1));
         SpnColuna.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         BtnMenu.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
@@ -365,9 +365,9 @@ public class GraphicTetris extends javax.swing.JFrame {
         );
 
         btnCreateGame.setFocusable(false);
-        SpnLinha.setValue(10);
+        SpnLinha.setValue(tetrisGame1.getLines());
         //SpnLinha.setStepSize(8);
-        SpnColuna.setValue(10);
+        SpnColuna.setValue(tetrisGame1.getColumns());
         //SpnColuna.setStepSize(4);
 
         pack();
@@ -379,10 +379,12 @@ public class GraphicTetris extends javax.swing.JFrame {
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
         tetrisGame1.stopGame();
-        dispose();
-        new GraphicTetris().setVisible(true);
-        tetrisGame1 = new TetrisGame(lines, columns, 350);
-        tetrisGame1.setGt(this);
+        tetrisGame1.newGame(lines,columns);
+        SpnLinha.setValue(tetrisGame1.getLines());
+        SpnColuna.setValue(tetrisGame1.getColumns());
+
+
+        
         showH();
         setLabelHold(Color.RED);
         revalidate();
@@ -393,10 +395,10 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateGameActionPerformed
 //Para jogo
     public void gameOver() {
-        tetrisGame1.stopSound();
-        tetrisGame1.play(4);
+        //tetrisGame1.stopSound();
+        //tetrisGame1.play(4);
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
-        tetrisGame1.stopSound();
+        //tetrisGame1.stopSound();
         this.dispose();
         new Menu().setVisible(true);
     }
@@ -452,6 +454,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         }
 
     }
+     
 //Mostra peça em hold na janela jPanel3
     public void showH() {
         jPanel3.removeAll();
@@ -653,7 +656,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             
             if(returnValue==1){
                 tetrisGame1.stopGame();
-                tetrisGame1.stopSound();
+                //tetrisGame1.stopSound();
                 this.dispose();
                 new Menu().setVisible(true);
                 
@@ -671,7 +674,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         // TODO add your handling code here: 
 
         tetrisGame1.stopGame();
-        tetrisGame1.stopSound();
+        //tetrisGame1.stopSound();
         jPanel2.removeAll();
         
         
@@ -681,7 +684,8 @@ public class GraphicTetris extends javax.swing.JFrame {
             
         tetrisGame1 = new TetrisGame(tetrisGame1.load(j.getSelectedFile().getAbsolutePath()));
         tetrisGame1.setGt(this);
-        
+        SpnLinha.setValue(tetrisGame1.getLines());
+        SpnColuna.setValue(tetrisGame1.getColumns());
         } catch(Exception e){tetrisGame1.unpauseGame(350);System.out.println(e);}
         
         javax.swing.GroupLayout tetrisGame1Layout = new javax.swing.GroupLayout(tetrisGame1);

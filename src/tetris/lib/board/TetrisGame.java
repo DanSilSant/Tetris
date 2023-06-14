@@ -43,7 +43,7 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
 
     //construtor por defeito
     public TetrisGame() {
-        this(20, 10, 1000);
+        this(20, 10, 350);
     }
 
     //construtor cópia
@@ -52,6 +52,8 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
         this.gt = t.gt;
 
     }
+    
+    
 
     //construtor com parâmetros
     public TetrisGame(int lines, int columns, int delay) {
@@ -59,7 +61,7 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
         this.timer = new Timer();
         this.delay = delay;
         startGame(this.delay);
-        play(2);
+       // play(2);
 
     }
 
@@ -72,7 +74,7 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
         this.delay = SavedDelay;
         timer = new Timer();
         startGame(this.delay);
-        play(2);
+       // play(2);
     }
 
     //construtor de load com peça em espera
@@ -86,7 +88,20 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
 
         timer = new Timer();
         startGame(this.delay);
-        play(2);
+       // play(2);
+    }
+    
+    public void newGame(int lines,int columns){
+       
+        this.resize(lines, columns);
+        this.generateArrayPiece();
+        gt.showP();
+        hold = null;
+        pontos=0;
+        timer = new Timer();
+        gt.text("");
+       
+        this.startGame(350);
     }
 
     //cria um clone
@@ -207,6 +222,7 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
     //get dos pontos
     public int getPontos() {
         return this.pontos;
+        
     }
 
     //apaga a linha completa e faz fall down nas linhas acima
