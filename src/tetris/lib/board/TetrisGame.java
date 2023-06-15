@@ -61,7 +61,7 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
         this.timer = new Timer();
         this.delay = delay;
         startGame(this.delay);
-       // play(2);
+        play(2);
 
     }
 
@@ -74,7 +74,7 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
         this.delay = SavedDelay;
         timer = new Timer();
         startGame(this.delay);
-       // play(2);
+        play(2);
     }
 
     //construtor de load com peça em espera
@@ -85,10 +85,10 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
         this.pontos = pontos;
         this.hold = hold;
         this.delay = SavedDelay;
-
+        
         timer = new Timer();
         startGame(this.delay);
-       // play(2);
+        play(2);
     }
     
     public void newGame(int lines,int columns){
@@ -102,6 +102,7 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
         gt.text("");
        
         this.startGame(350);
+        play(2);
     }
 
     //cria um clone
@@ -304,6 +305,10 @@ public  class TetrisGame extends TetrisBoard implements Serializable {
     }
     //para os sons
     public void stopSound() {
+        try{
         sound.stop();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }

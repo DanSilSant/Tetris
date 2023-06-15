@@ -379,6 +379,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         int lines = (Integer) SpnLinha.getValue();
         int columns = (Integer) SpnColuna.getValue();
         tetrisGame1.stopGame();
+            tetrisGame1.stopSound();
         tetrisGame1.newGame(lines,columns);
         SpnLinha.setValue(tetrisGame1.getLines());
         SpnColuna.setValue(tetrisGame1.getColumns());
@@ -395,10 +396,12 @@ public class GraphicTetris extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCreateGameActionPerformed
 //Para jogo
     public void gameOver() {
-        //tetrisGame1.stopSound();
-        //tetrisGame1.play(4);
+        
+            tetrisGame1.stopSound();
+        
+        tetrisGame1.play(4);
         JOptionPane.showMessageDialog(null, "Jogo acabou!");
-        //tetrisGame1.stopSound();
+            tetrisGame1.stopSound();
         this.dispose();
         new Menu().setVisible(true);
     }
@@ -538,6 +541,7 @@ public class GraphicTetris extends javax.swing.JFrame {
 //voltar ao menu
     private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMenuActionPerformed
         tetrisGame1.stopGame();
+            tetrisGame1.stopSound();
         this.dispose();
         new Menu().setVisible(true);
     }//GEN-LAST:event_BtnMenuActionPerformed
@@ -605,6 +609,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         //pausa
         if (evt.getKeyCode() == 80 || evt.getKeyCode() == 27) {
             tetrisGame1.stopGame();
+            tetrisGame1.stopSound();
             UIManager.put("OptionPane.yesButtonText", "Continuar");
             UIManager.put("OptionPane.noButtonText", "Novo Jogo");
             String[] buttons = {"Continuar", "Novo Jogo"};
@@ -618,9 +623,10 @@ public class GraphicTetris extends javax.swing.JFrame {
                 int lines = tetrisGame1.getLines();
                 int columns = tetrisGame1.getColumns();
                 tetrisGame1.stopGame();
+            tetrisGame1.stopSound();
                 dispose();
                 new GraphicTetris().setVisible(true);
-                //tetrisGame1.stopSound();
+            tetrisGame1.stopSound();
                 tetrisGame1 = new TetrisGame(lines, columns, 350);
                 tetrisGame1.setGt(this);
                 showH();
@@ -640,7 +646,7 @@ public class GraphicTetris extends javax.swing.JFrame {
        
         try {
             tetrisGame1.stopGame();
-            
+            tetrisGame1.stopSound();
             JFileChooser j = new JFileChooser();
             j.showSaveDialog(null);
             tetrisGame1.save(j.getSelectedFile().getAbsolutePath() + ".tetris");
@@ -656,7 +662,7 @@ public class GraphicTetris extends javax.swing.JFrame {
             
             if(returnValue==1){
                 tetrisGame1.stopGame();
-                //tetrisGame1.stopSound();
+            tetrisGame1.stopSound();
                 this.dispose();
                 new Menu().setVisible(true);
                 
@@ -674,7 +680,7 @@ public class GraphicTetris extends javax.swing.JFrame {
         // TODO add your handling code here: 
 
         tetrisGame1.stopGame();
-        //tetrisGame1.stopSound();
+            tetrisGame1.stopSound();
         jPanel2.removeAll();
         
         
