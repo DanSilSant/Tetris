@@ -303,9 +303,15 @@ public void freezePiece() {
     public void setCurrent(Piece current) {
         this.current = current;
     }
+<<<<<<< Updated upstream
     
     public Piece nextP(){
         return arrayP.get(1);
+=======
+    //devolve próxima peça
+    public Piece nextP(int index){
+        return arrayP.get(index);
+>>>>>>> Stashed changes
     }
     
 
