@@ -1,3 +1,3 @@
 # Tetris
 
-Projeto Tetris desenvolvido para a cadeira de Programação orientada a objetos
+Projeto Jogo do Tetris desenvolvido para a cadeira de Programação Orientada a Objetos
